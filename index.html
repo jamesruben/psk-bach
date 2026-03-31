@@ -117,6 +117,13 @@ nav.hide{transform:translateY(-100%)}
 .check-label a{color:inherit;text-decoration:none;border-bottom:1px solid #ddd}
 .check-label a:hover{border-color:#1a3a5c}
 .check-status{font-size:.58rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#c0513f;white-space:nowrap;transition:color .3s}
+.add-task-row{display:flex;gap:.5rem;padding:.85rem 0;border-top:1px solid #f2f0ec;align-items:center;flex-wrap:wrap}
+.add-task-input{flex:1;min-width:120px;font-family:'DM Sans',sans-serif;font-size:.82rem;border:1px solid #e8e6e1;border-radius:6px;padding:.38rem .7rem;color:#1a1a1a;outline:none;background:#fafaf7;transition:border-color .2s}
+.add-task-input:focus{border-color:#1a3a5c}
+.add-task-btn{font-family:'DM Sans',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#1a3a5c;color:#fff;border:none;border-radius:6px;padding:.4rem .9rem;cursor:pointer;white-space:nowrap;transition:background .2s}
+.add-task-btn:hover{background:#24527d}
+.remove-task-btn{font-size:1rem;color:#ccc;background:none;border:none;cursor:pointer;padding:0 .25rem;line-height:1;transition:color .2s;flex-shrink:0}
+.remove-task-btn:hover{color:#c0513f}
 
 /* ═══ BACKUPS ═══ */
 .backup-section{background:#fff;border:1px dashed #d8d5cf;border-radius:14px;padding:1.5rem 2rem;margin-bottom:1.25rem;transition:box-shadow .4s cubic-bezier(.22,1,.36,1)}
@@ -558,47 +565,52 @@ footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
 
   <div class="day r" style="padding:1.5rem 2rem">
     <div class="checklist">
-      <div class="check-row">
+      <div class="check-row" data-id="mila-dinner">
         <div class="check-box" onclick="toggleCheck(this)"></div>
         <span class="check-label"><a href="https://mila-miami.com/" target="_blank">Dinner at Mila</a> — Fri</span>
         <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>TBD</option></select>
-        <span class="check-status">Not Booked</span>
+        <span class="check-status">NOT DONE</span>
       </div>
-      <div class="check-row">
+      <div class="check-row" data-id="mila-club">
         <div class="check-box" onclick="toggleCheck(this)"></div>
         <span class="check-label"><a href="https://mila-miami.com/" target="_blank">The Club at Mila</a> — Fri</span>
         <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>TBD</option></select>
-        <span class="check-status">Not Booked</span>
+        <span class="check-status">NOT DONE</span>
       </div>
-      <div class="check-row">
+      <div class="check-row" data-id="marylous-dinner">
         <div class="check-box" onclick="toggleCheck(this)"></div>
         <span class="check-label"><a href="https://maps.app.goo.gl/2KKdfBmuceFPDgqJ7?g_st=i&utm_campaign=ac-im" target="_blank">Dinner at Mary Lou's</a> — Sat</span>
         <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>TBD</option></select>
-        <span class="check-status">Not Booked</span>
+        <span class="check-status">NOT DONE</span>
       </div>
-      <div class="check-row">
+      <div class="check-row" data-id="lavictoria">
         <div class="check-box" onclick="toggleCheck(this)"></div>
         <span class="check-label"><a href="https://lavictoriamiami.com/" target="_blank" rel="noopener">La Vitoria</a> — Sat</span>
         <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>TBD</option></select>
-        <span class="check-status">Not Booked</span>
+        <span class="check-status">NOT DONE</span>
       </div>
-      <div class="check-row">
+      <div class="check-row" data-id="padel">
         <div class="check-box" onclick="toggleCheck(this)"></div>
         <span class="check-label"><a href="https://www.reservepadel.com/" target="_blank">Padel at Reserve</a> — Sun</span>
         <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>TBD</option></select>
-        <span class="check-status">Not Booked</span>
+        <span class="check-status">NOT DONE</span>
       </div>
-      <div class="check-row">
+      <div class="check-row" data-id="sunny-dinner">
         <div class="check-box" onclick="toggleCheck(this)"></div>
         <span class="check-label"><a href="https://sunnysmia.com/" target="_blank">Dinner at Sunny Steakhouse</a> — Sun</span>
         <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>TBD</option></select>
-        <span class="check-status">Not Booked</span>
+        <span class="check-status">NOT DONE</span>
       </div>
-      <div class="check-row">
+      <div class="check-row" data-id="accommodations">
         <div class="check-box" onclick="toggleCheck(this)"></div>
         <span class="check-label">Accommodations</span>
         <select class="assignee-select" title="Assignee"><option>Uru</option><option selected>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>TBD</option></select>
-        <span class="check-status">Not Booked</span>
+        <span class="check-status">NOT DONE</span>
+      </div>
+      <div class="add-task-row">
+        <input class="add-task-input" type="text" id="newTaskLabel" placeholder="Add a task…">
+        <select class="assignee-select" id="newTaskAssignee"><option>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>TBD</option></select>
+        <button class="add-task-btn" onclick="addTask()">+ Add</button>
       </div>
     </div>
   </div>
@@ -630,35 +642,87 @@ firebase.initializeApp({
   appId: "1:207017440765:web:333df0c146fc85ccf4d594",
   databaseURL: "https://psk-bach-default-rtdb.firebaseio.com"
 });
-const statusRef = firebase.database().ref('status');
+const taskStateRef = firebase.database().ref('taskState');
+const checklist = document.querySelector('.checklist');
+const NAMES = ['Uru','James','Crown','Freese','PSK','Owen','Doyle','Huff','TBD'];
 
-statusRef.on('value', (snapshot) => {
-  const state = snapshot.val();
-  if (!state) return;
-  document.querySelectorAll('.check-row').forEach((row, i) => {
-    if (!state[i]) return;
-    const box = row.querySelector('.check-box');
-    const status = row.querySelector('.check-status');
-    const select = row.querySelector('.assignee-select');
-    const isChecked = box.classList.contains('checked');
-    if (state[i].checked !== isChecked) {
-      box.classList.toggle('checked', state[i].checked);
-      row.classList.toggle('done', state[i].checked);
-      status.textContent = state[i].checked ? 'Booked' : 'Not Booked';
-      status.style.color = state[i].checked ? '#5a9a6a' : '#c0513f';
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function optionsHTML(selected) {
+  return NAMES.map(n => `<option${n===selected?' selected':''}>${n}</option>`).join('');
+}
+
+function applyState(row, task) {
+  const box = row.querySelector('.check-box');
+  const status = row.querySelector('.check-status');
+  const select = row.querySelector('.assignee-select');
+  const checked = !!task.checked;
+  box.classList.toggle('checked', checked);
+  row.classList.toggle('done', checked);
+  status.textContent = checked ? 'DONE' : 'NOT DONE';
+  status.style.color = checked ? '#5a9a6a' : '#c0513f';
+  if (select && task.assignee && select.value !== task.assignee) select.value = task.assignee;
+}
+
+function createCustomRow(id, task) {
+  const row = document.createElement('div');
+  row.className = 'check-row' + (task.checked ? ' done' : '');
+  row.dataset.id = id;
+  row.dataset.custom = '1';
+  row.innerHTML = `
+    <div class="check-box${task.checked?' checked':''}" onclick="toggleCheck(this)"></div>
+    <span class="check-label">${escapeHtml(task.label)}</span>
+    <select class="assignee-select" title="Assignee">${optionsHTML(task.assignee||'TBD')}</select>
+    <span class="check-status" style="color:${task.checked?'#5a9a6a':'#c0513f'}">${task.checked?'DONE':'NOT DONE'}</span>
+    <button class="remove-task-btn" onclick="removeTask('${id}')">×</button>
+  `;
+  row.querySelector('.assignee-select').addEventListener('change', e => {
+    taskStateRef.child(id).update({ assignee: e.target.value });
+  });
+  return row;
+}
+
+taskStateRef.on('value', snapshot => {
+  const state = snapshot.val() || {};
+  document.querySelectorAll('.check-row[data-id]:not([data-custom])').forEach(row => {
+    if (state[row.dataset.id]) applyState(row, state[row.dataset.id]);
+  });
+  const addRow = document.querySelector('.add-task-row');
+  const renderedIds = new Set(Array.from(document.querySelectorAll('.check-row[data-custom]')).map(r => r.dataset.id));
+  const fbCustomIds = new Set(Object.entries(state).filter(([,v]) => v.custom).map(([k]) => k));
+  Object.entries(state).forEach(([id, task]) => {
+    if (!task.custom) return;
+    if (!renderedIds.has(id)) {
+      checklist.insertBefore(createCustomRow(id, task), addRow);
+    } else {
+      applyState(document.querySelector(`.check-row[data-id="${id}"]`), task);
     }
-    if (select && state[i].assignee && select.value !== state[i].assignee) {
-      select.value = state[i].assignee;
-    }
+  });
+  renderedIds.forEach(id => {
+    if (!fbCustomIds.has(id)) document.querySelector(`.check-row[data-id="${id}"]`)?.remove();
   });
 });
 
-function saveState() {
-  const state = Array.from(document.querySelectorAll('.check-row')).map(row => ({
-    checked: row.querySelector('.check-box').classList.contains('checked'),
-    assignee: row.querySelector('.assignee-select')?.value || 'TBD'
-  }));
-  statusRef.set(state);
+document.querySelectorAll('.check-row[data-id]:not([data-custom]) .assignee-select').forEach(sel => {
+  sel.addEventListener('change', () => {
+    taskStateRef.child(sel.closest('.check-row').dataset.id).update({ assignee: sel.value });
+  });
+});
+
+function addTask() {
+  const input = document.getElementById('newTaskLabel');
+  const label = input.value.trim();
+  if (!label) return;
+  taskStateRef.child('custom-' + Date.now()).set({
+    label, assignee: document.getElementById('newTaskAssignee').value, checked: false, custom: true
+  });
+  input.value = '';
+}
+
+function removeTask(id) {
+  taskStateRef.child(id).remove();
 }
 
 // ═══ SCROLL REVEAL ═══
@@ -692,20 +756,12 @@ function toggleCheck(box) {
   box.classList.toggle('checked');
   const row = box.closest('.check-row');
   row.classList.toggle('done');
+  const checked = box.classList.contains('checked');
   const status = row.querySelector('.check-status');
-  if (box.classList.contains('checked')) {
-    status.textContent = 'Booked';
-    status.style.color = '#5a9a6a';
-  } else {
-    status.textContent = 'Not Booked';
-    status.style.color = '#c0513f';
-  }
-  saveState();
+  status.textContent = checked ? 'DONE' : 'NOT DONE';
+  status.style.color = checked ? '#5a9a6a' : '#c0513f';
+  taskStateRef.child(row.dataset.id).update({ checked });
 }
-
-document.querySelectorAll('.assignee-select').forEach(sel => {
-  sel.addEventListener('change', saveState);
-});
 </script>
 
 </body>
