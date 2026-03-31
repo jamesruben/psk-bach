@@ -657,7 +657,44 @@ function toggleCheck(box) {
     status.textContent = 'Not Booked';
     status.style.color = '#c0513f';
   }
+  saveState();
 }
+
+// ═══ PERSIST STATE ═══
+function saveState() {
+  const rows = document.querySelectorAll('.check-row');
+  const state = Array.from(rows).map(row => ({
+    checked: row.querySelector('.check-box').classList.contains('checked'),
+    assignee: row.querySelector('.assignee-select')?.value
+  }));
+  localStorage.setItem('psk-bach-status', JSON.stringify(state));
+}
+
+function loadState() {
+  const saved = localStorage.getItem('psk-bach-status');
+  if (!saved) return;
+  const state = JSON.parse(saved);
+  const rows = document.querySelectorAll('.check-row');
+  rows.forEach((row, i) => {
+    if (!state[i]) return;
+    const box = row.querySelector('.check-box');
+    const status = row.querySelector('.check-status');
+    const select = row.querySelector('.assignee-select');
+    if (state[i].checked) {
+      box.classList.add('checked');
+      row.classList.add('done');
+      status.textContent = 'Booked';
+      status.style.color = '#5a9a6a';
+    }
+    if (select && state[i].assignee) select.value = state[i].assignee;
+  });
+}
+
+document.querySelectorAll('.assignee-select').forEach(sel => {
+  sel.addEventListener('change', saveState);
+});
+
+loadState();
 </script>
 
 </body>
