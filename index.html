@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSK's Bar Mitzvah — Miami 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:#FAFAF7;color:#1a1a1a;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:#1a3a5c;color:#fff}
+
+/* ═══ SCROLL ANIMATIONS ═══ */
+.r{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+.r.v{opacity:1;transform:none}
+.r-left{opacity:0;transform:translateX(-50px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+.r-left.v{opacity:1;transform:none}
+.r-right{opacity:0;transform:translateX(50px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+.r-right.v{opacity:1;transform:none}
+.r-scale{opacity:0;transform:scale(.92);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.r-scale.v{opacity:1;transform:none}
+
+/* stagger children */
+.stagger>.r:nth-child(1),.stagger>.r-scale:nth-child(1){transition-delay:.05s}
+.stagger>.r:nth-child(2),.stagger>.r-scale:nth-child(2){transition-delay:.1s}
+.stagger>.r:nth-child(3),.stagger>.r-scale:nth-child(3){transition-delay:.15s}
+.stagger>.r:nth-child(4),.stagger>.r-scale:nth-child(4){transition-delay:.2s}
+.stagger>.r:nth-child(5),.stagger>.r-scale:nth-child(5){transition-delay:.25s}
+.stagger>.r:nth-child(6),.stagger>.r-scale:nth-child(6){transition-delay:.3s}
+.stagger>.r:nth-child(7),.stagger>.r-scale:nth-child(7){transition-delay:.35s}
+.stagger>.r:nth-child(8),.stagger>.r-scale:nth-child(8){transition-delay:.4s}
+
+/* hero anims */
+@keyframes heroFade{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes meander{from{background-position:0 0}to{background-position:120px 0}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.hero-anim{opacity:0;animation:heroFade .9s cubic-bezier(.22,1,.36,1) forwards}
+.ha2{animation-delay:.15s}.ha3{animation-delay:.3s}.ha4{animation-delay:.5s}.ha5{animation-delay:.7s}
+
+/* ═══ MEANDER ═══ */
+.meander{height:16px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='16' viewBox='0 0 120 16'%3E%3Cpath d='M0,8 L0,0 L8,0 L8,8 L16,8 L16,0 L24,0 L24,8 L32,8 L32,0 L40,0 L40,8 L48,8 L48,0 L56,0 L56,8 L64,8 L64,0 L72,0 L72,8 L80,8 L80,0 L88,0 L88,8 L96,8 L96,0 L104,0 L104,8 L112,8 L112,0 L120,0 L120,8 L120,16 L112,16 L112,8 L104,8 L104,16 L96,16 L96,8 L88,8 L88,16 L80,16 L80,8 L72,8 L72,16 L64,16 L64,8 L56,8 L56,16 L48,16 L48,8 L40,8 L40,16 L32,16 L32,8 L24,8 L24,16 L16,16 L16,8 L8,8 L8,16 L0,16 Z' fill='none' stroke='%23c4a44a' stroke-width='1' opacity='0.18'/%3E%3C/svg%3E") repeat-x;animation:meander 4s linear infinite}
+
+/* ═══ NAV ═══ */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,250,247,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid #e8e6e1;display:flex;justify-content:space-between;align-items:center;padding:.75rem 2rem;transition:transform .3s}
+nav.hide{transform:translateY(-100%)}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:.95rem;color:#1a1a1a}
+.nav-links{display:flex;gap:1.5rem}
+.nav-links a{font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#999;text-decoration:none;transition:color .25s}
+.nav-links a:hover{color:#1a1a1a}
+
+/* ═══ HERO ═══ */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;background:#0f1923;color:#f5f0e8;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:50%;left:50%;width:900px;height:900px;transform:translate(-50%,-50%);background:repeating-conic-gradient(from 0deg,transparent 0deg 8deg,rgba(196,164,74,.025) 8deg 10deg);border-radius:50%}
+.hero::after{content:'';position:absolute;inset:24px;border:1px solid rgba(196,164,74,.06);pointer-events:none}
+.hero-eyebrow{font-size:.68rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#c4a44a;margin-bottom:2.5rem;position:relative;z-index:1}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(3.2rem,11vw,8.5rem);line-height:.9;font-weight:400;color:#f5f0e8;position:relative;z-index:1}
+.hero h1 em{font-style:italic;color:#c4a44a}
+.hero-sub{font-family:'DM Serif Display',serif;font-size:clamp(.95rem,2.5vw,1.35rem);font-style:italic;color:#6a7a8a;margin-top:1.5rem;position:relative;z-index:1}
+.hero-details{margin-top:3rem;display:flex;gap:3rem;position:relative;z-index:1;flex-wrap:wrap;justify-content:center}
+.hero-detail{text-align:center}
+.hero-detail-label{font-size:.58rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:#4a5a6a;margin-bottom:.3rem}
+.hero-detail-value{font-family:'DM Serif Display',serif;font-size:1.05rem;color:#f5f0e8}
+.hero-deco{position:absolute;z-index:0;opacity:.035;font-size:7rem}
+.hero-deco.left{top:18%;left:6%;animation:float 7s ease-in-out infinite}
+.hero-deco.right{bottom:18%;right:6%;animation:float 7s ease-in-out infinite 2s}
+.scroll-arrow{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:1;opacity:.25;animation:float 2.5s ease-in-out infinite}
+.scroll-arrow svg{width:18px;height:18px;stroke:#f5f0e8;stroke-width:2;fill:none}
+
+/* ═══ LAYOUT ═══ */
+.container{max-width:720px;margin:0 auto;padding:0 2rem}
+.section{padding:5rem 0;border-bottom:1px solid #e8e6e1}
+.section:last-of-type{border-bottom:none}
+.section-eyebrow{font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#1a3a5c;margin-bottom:.75rem}
+.section-title{font-family:'DM Serif Display',serif;font-size:2rem;font-weight:400;color:#1a1a1a;margin-bottom:.5rem}
+.section-desc{font-size:.92rem;color:#888;line-height:1.65;margin-bottom:2.5rem;max-width:520px}
+
+/* ═══ DAY CARDS ═══ */
+.day{background:#fff;border:1px solid #e8e6e1;border-radius:14px;padding:2rem;margin-bottom:1.5rem;transition:box-shadow .4s cubic-bezier(.22,1,.36,1),transform .4s cubic-bezier(.22,1,.36,1)}
+.day:hover{box-shadow:0 12px 40px rgba(0,0,0,.06);transform:translateY(-3px)}
+.day-top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:.25rem;flex-wrap:wrap;gap:.5rem}
+.day-tag{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#1a3a5c;background:#eef3f8;padding:.25rem .6rem;border-radius:4px}
+.day-date{font-size:.78rem;color:#aaa;font-family:'JetBrains Mono',monospace}
+.day-title{font-family:'DM Serif Display',serif;font-size:1.35rem;color:#1a1a1a;margin-bottom:1.25rem}
+
+.item{display:flex;gap:.85rem;padding:.7rem 0;border-top:1px solid #f2f0ec;align-items:flex-start}
+.item:first-child{border-top:none}
+.item-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:1rem;background:#FAFAF7;border-radius:8px;flex-shrink:0}
+.item-body{flex:1}
+.item-name{font-size:.88rem;font-weight:600;color:#1a1a1a;display:flex;align-items:center;flex-wrap:wrap;gap:.4rem}
+.item-name a{color:inherit;text-decoration:none;border-bottom:1px solid #ddd;transition:border-color .2s}
+.item-name a:hover{border-color:#1a3a5c}
+.item-detail{font-size:.78rem;color:#999;margin-top:.15rem;line-height:1.5}
+
+/* ═══ TAGS ═══ */
+.tag{display:inline-block;font-size:.52rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.15rem .45rem;border-radius:3px;vertical-align:middle}
+.tag-tbd{background:#f0f0ed;color:#aaa}
+.tag-book{background:#fef2f0;color:#c0513f;border:1px solid #f5d5cf}
+.tag-tentative{background:#f7f5f0;color:#a08030;border:1px solid #efe0b8}
+
+/* ═══ ASSIGNEE SELECT ═══ */
+.assignee-select{font-family:'DM Sans',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#1a3a5c;background:#eef3f8;border:1px solid #d8e4ef;border-radius:3px;padding:.15rem .3rem;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5' viewBox='0 0 8 5'%3E%3Cpath d='M0,0 L4,5 L8,0' fill='none' stroke='%231a3a5c' stroke-width='1.2'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center;padding-right:18px;transition:background-color .2s}
+.assignee-select:hover{background:#dde8f2}
+.assignee-select:focus{outline:2px solid #1a3a5c;outline-offset:1px}
+
+/* ═══ CHECKLIST ═══ */
+.checklist{display:flex;flex-direction:column}
+.check-row{display:flex;align-items:center;gap:.75rem;padding:.75rem 0;border-bottom:1px solid #f2f0ec;font-size:.85rem;transition:opacity .3s}
+.check-row:last-child{border-bottom:none}
+.check-box{width:18px;height:18px;border:1.5px solid #ccc;border-radius:4px;flex-shrink:0;cursor:pointer;transition:all .25s cubic-bezier(.22,1,.36,1);display:flex;align-items:center;justify-content:center;background:#fff}
+.check-box:hover{border-color:#1a3a5c;background:#f4f7fa}
+.check-box.checked{background:#1a3a5c;border-color:#1a3a5c}
+.check-box.checked::after{content:'';display:block;width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-0.5px,-0.5px)}
+.check-row.done .check-label{text-decoration:line-through;color:#bbb}
+.check-row.done .check-status{color:#5a9a6a}
+.check-label{flex:1;color:#1a1a1a;font-weight:500}
+.check-label a{color:inherit;text-decoration:none;border-bottom:1px solid #ddd}
+.check-label a:hover{border-color:#1a3a5c}
+.check-status{font-size:.58rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#c0513f;white-space:nowrap;transition:color .3s}
+
+/* ═══ BACKUPS ═══ */
+.backup-section{background:#fff;border:1px dashed #d8d5cf;border-radius:14px;padding:1.5rem 2rem;margin-bottom:1.25rem;transition:box-shadow .4s cubic-bezier(.22,1,.36,1)}
+.backup-section:hover{box-shadow:0 8px 28px rgba(0,0,0,.04)}
+.backup-eyebrow{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#a08030;margin-bottom:.6rem}
+.backup-item{display:flex;align-items:baseline;gap:.5rem;padding:.3rem 0;font-size:.88rem}
+.backup-item-name{font-weight:600;color:#1a1a1a}
+.backup-item-name a{color:inherit;text-decoration:none;border-bottom:1px solid #ddd;transition:border-color .2s}
+.backup-item-name a:hover{border-color:#1a3a5c}
+.backup-item-note{color:#999;font-size:.82rem}
+
+/* ═══ ACCOMMODATIONS ═══ */
+.accom-card{background:#fff;border:1px solid #e8e6e1;border-radius:14px;padding:1.75rem 2rem;margin-bottom:1.25rem;transition:box-shadow .4s cubic-bezier(.22,1,.36,1),transform .4s cubic-bezier(.22,1,.36,1)}
+.accom-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.06);transform:translateY(-2px)}
+.accom-badge{display:inline-block;font-size:.52rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .5rem;border-radius:3px;margin-bottom:.75rem}
+.accom-badge-hotel{background:#eef3f8;color:#1a3a5c}
+.accom-badge-airbnb{background:#fef2f0;color:#c0513f}
+.accom-name{font-family:'DM Serif Display',serif;font-size:1.1rem;color:#1a1a1a;margin-bottom:.4rem}
+.accom-desc{font-size:.82rem;color:#888;line-height:1.6;margin-bottom:1rem}
+.accom-links{display:flex;flex-direction:column;gap:.4rem}
+.accom-link{font-size:.78rem;font-weight:600;color:#1a3a5c;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;transition:color .2s}
+.accom-link:hover{color:#c4a44a}
+.callout{background:#f7f5f0;border-left:3px solid #c4a44a;padding:1rem 1.25rem;margin-top:1.5rem;font-size:.82rem;color:#777;line-height:1.6;border-radius:0 8px 8px 0}
+.callout strong{color:#1a1a1a}
+
+/* ═══ URU NOTE ═══ */
+.uru-note{background:#0f1923;border-radius:14px;padding:1.5rem 2rem;margin-top:2.5rem;color:#7a8a9a;font-size:.85rem;line-height:1.6}
+.uru-note strong{color:#f5f0e8;font-family:'DM Serif Display',serif;font-weight:400;font-size:1rem;display:block;margin-bottom:.4rem}
+.uru-note em{color:#c4a44a;font-style:normal;font-weight:600}
+
+/* ═══ ATTENDEES ═══ */
+.attendees-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:1rem;margin-top:1rem}
+.attendee{background:#fff;border:1px solid #e8e6e1;border-radius:14px;padding:1.25rem 1rem;text-align:center;transition:box-shadow .4s cubic-bezier(.22,1,.36,1),transform .4s cubic-bezier(.22,1,.36,1)}
+.attendee:hover{box-shadow:0 12px 40px rgba(0,0,0,.06);transform:translateY(-4px)}
+.attendee-avatar{width:44px;height:44px;border-radius:50%;background:#eef3f8;display:flex;align-items:center;justify-content:center;margin:0 auto .7rem;font-size:.85rem;font-weight:700;color:#1a3a5c;font-family:'JetBrains Mono',monospace;transition:transform .3s}
+.attendee:hover .attendee-avatar{transform:scale(1.08)}
+.attendee-name{font-size:.82rem;font-weight:600;color:#1a1a1a;line-height:1.3}
+.attendee-role{font-size:.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#aaa;margin-top:.25rem}
+.attendee.bachelor{border-color:#d4b85a}
+.attendee.bachelor .attendee-avatar{background:#faf5e8;color:#9a8030}
+
+/* ═══ BETTING ═══ */
+.bet-card{background:#fff;border:1px solid #e8e6e1;border-radius:14px;overflow:hidden;margin-bottom:1rem;transition:box-shadow .4s cubic-bezier(.22,1,.36,1),transform .4s cubic-bezier(.22,1,.36,1)}
+.bet-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.06);transform:translateY(-2px)}
+.bet-header{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 1.5rem;gap:1rem;flex-wrap:wrap}
+.bet-title{font-size:.9rem;font-weight:600;color:#1a1a1a;flex:1}
+.bet-odds{font-family:'JetBrains Mono',monospace;font-size:.85rem;font-weight:500;color:#1a3a5c;background:#eef3f8;padding:.3rem .7rem;border-radius:4px;white-space:nowrap}
+.bet-bar{height:5px;background:#f2f0ec}
+.bet-bar-fill{height:100%;border-radius:0 3px 3px 0;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+.bet-footer{padding:.6rem 1.5rem;font-size:.7rem;color:#aaa;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace}
+
+/* ═══ FOOTER ═══ */
+footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
+.footer-title{font-family:'DM Serif Display',serif;font-size:1.4rem;color:#f5f0e8;margin-bottom:.35rem}
+.footer-sub{font-size:.78rem;font-style:italic;color:#4a5a6a}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:600px){
+  nav{padding:.6rem 1rem}
+  .nav-links{gap:.6rem}
+  .nav-links a{font-size:.58rem;letter-spacing:.05em}
+  .container{padding:0 1.25rem}
+  .section{padding:3.5rem 0}
+  .day{padding:1.5rem 1.25rem}
+  .check-row{flex-wrap:wrap;gap:.4rem}
+  .hero-details{gap:1.5rem}
+  .backup-section{padding:1.25rem 1.5rem}
+  .attendees-grid{grid-template-columns:repeat(2,1fr);gap:.75rem}
+  .bet-header{padding:1rem 1.25rem}
+  .bet-footer{padding:.5rem 1.25rem;flex-direction:column;gap:.2rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">PSK's Bar Mitzvah</div>
+  <div class="nav-links">
+    <a href="#schedule">Schedule</a>
+    <a href="#odds">Odds</a>
+    <a href="#backups">Backups</a>
+    <a href="#stays">Stays</a>
+    <a href="#crew">Crew</a>
+    <a href="#status">Status</a>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<div class="hero">
+  <span class="hero-deco left">🌴</span>
+  <span class="hero-deco right">🏛️</span>
+
+  <div class="hero-eyebrow hero-anim ha2">Miami &nbsp;·&nbsp; Memorial Day Weekend &nbsp;·&nbsp; 2026</div>
+  <h1 class="hero-anim ha3">PSK's<br><em>Bar Mitzvah</em></h1>
+  <div class="hero-sub hero-anim ha4">The ceremony his parents never planned.</div>
+
+  <div class="hero-details hero-anim ha5">
+    <div class="hero-detail">
+      <div class="hero-detail-label">Location</div>
+      <div class="hero-detail-value">Miami Beach</div>
+    </div>
+    <div class="hero-detail">
+      <div class="hero-detail-label">Dates</div>
+      <div class="hero-detail-value">May 22 – 25</div>
+    </div>
+    <div class="hero-detail">
+      <div class="hero-detail-label">Headcount</div>
+      <div class="hero-detail-value">8</div>
+    </div>
+  </div>
+
+  <div class="scroll-arrow"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+</div>
+
+<div class="meander"></div>
+
+<!-- ═══════════ SCHEDULE ═══════════ -->
+<div class="container">
+<section class="section" id="schedule">
+  <div class="section-eyebrow r">The Itinerary</div>
+  <div class="section-title r">Four Days in Miami</div>
+  <div class="section-desc r">Here's the plan. Links where we have them. TBD means we're still figuring it out.</div>
+
+  <!-- FRIDAY -->
+  <div class="day r">
+    <div class="day-top">
+      <span class="day-tag">Day 1</span>
+      <span class="day-date">Fri, May 22</span>
+    </div>
+    <div class="day-title">The Odyssey Begins</div>
+    <div class="item">
+      <div class="item-icon">✈️</div>
+      <div class="item-body">
+        <div class="item-name">Fly In</div>
+        <div class="item-detail">Get here by dinner. Plan your flights accordingly.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-icon">🍽️</div>
+      <div class="item-body">
+        <div class="item-name"><a href="https://mila-miami.com/" target="_blank">Dinner at Mila</a> <span class="tag tag-book">Needs Booking</span></div>
+        <div class="item-detail">Time TBD. Rooftop, Mediterranean-Asian.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-icon">🎵</div>
+      <div class="item-body">
+        <div class="item-name"><a href="https://mila-miami.com/" target="_blank">The Club at Mila</a> <span class="tag tag-book">Needs Booking</span></div>
+        <div class="item-detail">Same building as dinner. No Uber required.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-icon">🌙</div>
+      <div class="item-body">
+        <div class="item-name"><a href="https://www.11miami.com/" target="_blank">Eleven</a> <span class="tag tag-tentative">Maybe</span></div>
+        <div class="item-detail">Late night option. Depends how everyone's feeling.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SATURDAY -->
+  <div class="day r">
+    <div class="day-top">
+      <span class="day-tag">Day 2 — Main Event</span>
+      <span class="day-date">Sat, May 23</span>
+    </div>
+    <div class="day-title">The Agora</div>
+    <div class="item">
+      <div class="item-icon">💪</div>
+      <div class="item-body">
+        <div class="item-name">Morning Fitness <span class="tag tag-tbd">TBD</span></div>
+        <div class="item-detail">Still deciding what. Will update.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-icon">🥂</div>
+      <div class="item-body">
+        <div class="item-name">Brunch <span class="tag tag-tbd">TBD</span></div>
+        <div class="item-detail">Venue TBD. Somewhere good.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-icon">🏆</div>
+      <div class="item-body">
+        <div class="item-name">Beer Olympics</div>
+        <div class="item-detail">Teams TBD. Everyone plays. No exceptions.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-icon">🏖️</div>
+      <div class="item-body">
+        <div class="item-name">Beach</div>
+        <div class="item-detail">Do whatever you want.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-icon">🍽️</div>
+      <div class="item-body">
+        <div class="item-name"><a href="https://maps.app.goo.gl/2KKdfBmuceFPDgqJ7?g_st=i&utm_campaign=ac-im" target="_blank">Dinner at Mary Lou's</a> <span class="tag tag-book">Needs Booking</span></div>
+        <div class="item-detail">Time TBD.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-icon">🎵</div>
+      <div class="item-body">
+        <div class="item-name">La Vitoria <span class="tag tag-book">Needs Booking</span></div>
+        <div class="item-detail">Saturday night main event.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-icon">🌙</div>
+      <div class="item-body">
+        <div class="item-name"><a href="https://www.11miami.com/" target="_blank">Eleven</a> <span class="tag tag-tentative">If we skipped Friday</span></div>
+        <div class="item-detail">Late night backup.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUNDAY -->
+  <div class="day r">
+    <div class="day-top">
+      <span class="day-tag">Day 3</span>
+      <span class="day-date">Sun, May 24</span>
+    </div>
+    <div class="day-title">The Symposium</div>
+    <div class="item">
+      <div class="item-icon">☕</div>
+      <div class="item-body">
+        <div class="item-name">Breakfast</div>
+        <div class="item-detail">Somewhere nearby. Easy morning.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-icon">🎾</div>
+      <div class="item-body">
+        <div class="item-name"><a href="https://www.reservepadel.com/" target="_blank">Padel at Reserve</a> <span class="tag tag-book">Needs Booking</span></div>
+        <div class="item-detail">Time TBD.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-icon">😎</div>
+      <div class="item-body">
+        <div class="item-name">Afternoon Free</div>
+        <div class="item-detail">Pool, beach, chill.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-icon">🥩</div>
+      <div class="item-body">
+        <div class="item-name"><a href="https://sunnysmia.com/" target="_blank">Dinner at Sunny Steakhouse</a> <span class="tag tag-book">Needs Booking</span></div>
+        <div class="item-detail">Last dinner. Speeches happening here — come prepared or wing it, your call.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MONDAY -->
+  <div class="day r">
+    <div class="day-top">
+      <span class="day-tag">Day 4</span>
+      <span class="day-date">Mon, May 25</span>
+    </div>
+    <div class="day-title">The Nostos</div>
+    <div class="item">
+      <div class="item-icon">🛫</div>
+      <div class="item-body">
+        <div class="item-name">Departures</div>
+        <div class="item-detail">Everyone heads home. Safe flights.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ BETTING ═══════════ -->
+<section class="section" id="odds">
+  <div class="section-eyebrow r">The Book</div>
+  <div class="section-title r">Betting Lines</div>
+  <div class="section-desc r">Just for fun. No payouts. Lines updated as new information comes in.</div>
+
+  <div class="bet-card r">
+    <div class="bet-header">
+      <div class="bet-title">Jack Freese is physically present in Miami at any point during the weekend</div>
+      <div class="bet-odds">+1400</div>
+    </div>
+    <div class="bet-bar"><div class="bet-bar-fill" data-width="7" style="width:0%;background:#c0513f"></div></div>
+    <div class="bet-footer">
+      <span>Implied: 6.7%</span>
+      <span>Consensus: No</span>
+    </div>
+  </div>
+
+  <div class="bet-card r">
+    <div class="bet-header">
+      <div class="bet-title">Total beers consumed by Andrew Crown over entire weekend — O/U 1.5</div>
+      <div class="bet-odds">O/U 1.5</div>
+    </div>
+    <div class="bet-bar"><div class="bet-bar-fill" data-width="50" style="width:0%;background:#a08030"></div></div>
+    <div class="bet-footer">
+      <span>Line: 1.5 beers</span>
+      <span>Smart money: Under</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ BACKUPS ═══════════ -->
+<section class="section" id="backups">
+  <div class="section-eyebrow r">Alternatives</div>
+  <div class="section-title r">Backup Options</div>
+  <div class="section-desc r">In case something falls through or we want to switch things up.</div>
+
+  <div class="backup-section r">
+    <div class="backup-eyebrow">Backup Dinners</div>
+    <div class="backup-item">
+      <span class="backup-item-name"><a href="https://www.cipriani.com/cipriani-miami-living-room" target="_blank">Cipriani</a></span>
+      <span class="backup-item-note">— Could swap into any night.</span>
+    </div>
+    <div class="backup-item">
+      <span class="backup-item-name"><span class="tag tag-tbd">TBD</span></span>
+      <span class="backup-item-note">— Open to suggestions.</span>
+    </div>
+  </div>
+
+  <div class="backup-section r">
+    <div class="backup-eyebrow">Backup Nightlife</div>
+    <div class="backup-item">
+      <span class="backup-item-name"><a href="https://www.cipriani.com/cipriani-miami-living-room" target="_blank">Living Room</a></span>
+      <span class="backup-item-note">— Downstairs from Cipriani. Easy combo.</span>
+    </div>
+    <div class="backup-item">
+      <span class="backup-item-name"><span class="tag tag-tbd">TBD</span></span>
+      <span class="backup-item-note">— Open to suggestions.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ACCOMMODATIONS ═══════════ -->
+<section class="section" id="stays">
+  <div class="section-eyebrow r">Accommodations</div>
+  <div class="section-title r">Where We're Staying</div>
+  <div class="section-desc r">Two options under consideration. Neither booked yet. Both in South Beach.</div>
+
+  <div class="accom-card r">
+    <div class="accom-badge accom-badge-hotel">Hotel</div>
+    <div class="accom-name">Boulan South Beach</div>
+    <div class="accom-desc">Boutique hotel on Collins Ave. Penthouse fits 6 max, so at least one additional room needed. Same rates available at the links below — no special code.</div>
+    <div class="accom-links">
+      <a class="accom-link" href="https://www.boulanmiami.com/rooms/three-penthouse-suite" target="_blank">Three Penthouse Suite →</a>
+      <a class="accom-link" href="https://www.boulanmiami.com/rooms/double-studio-with-terrace" target="_blank">Double Studio with Terrace →</a>
+    </div>
+  </div>
+
+  <div class="accom-card r">
+    <div class="accom-badge accom-badge-airbnb">Airbnb</div>
+    <div class="accom-name">South Beach House — Sleeps 8</div>
+    <div class="accom-desc">Full house rental. Fits 8. Everyone together.</div>
+    <div class="accom-links">
+      <a class="accom-link" href="https://www.airbnb.com/rooms/36974648?adults=8&check_in=2026-05-22&check_out=2026-05-25" target="_blank">View Listing on Airbnb →</a>
+    </div>
+  </div>
+
+  <div class="callout r">
+    <strong>Status:</strong> Neither option booked yet. Still evaluating. Updates incoming.
+  </div>
+</section>
+
+<!-- ═══════════ CREW ═══════════ -->
+<section class="section" id="crew">
+  <div class="section-eyebrow r">The Group</div>
+  <div class="section-title r">Roll Call</div>
+  <div class="section-desc r">The full roster. Eight guys, give or take a Freese.</div>
+
+  <div class="attendees-grid stagger">
+    <div class="attendee bachelor r-scale">
+      <div class="attendee-avatar">PK</div>
+      <div class="attendee-name">Peter Karas</div>
+      <div class="attendee-role">The Bachelor</div>
+    </div>
+    <div class="attendee r-scale">
+      <div class="attendee-avatar">AC</div>
+      <div class="attendee-name">Andrew Crown</div>
+      <div class="attendee-role"></div>
+    </div>
+    <div class="attendee r-scale">
+      <div class="attendee-avatar">JF</div>
+      <div class="attendee-name">Jack Freese</div>
+      <div class="attendee-role">Unconfirmed</div>
+    </div>
+    <div class="attendee r-scale">
+      <div class="attendee-avatar">OP</div>
+      <div class="attendee-name">Owen Prunskis</div>
+      <div class="attendee-role"></div>
+    </div>
+    <div class="attendee r-scale">
+      <div class="attendee-avatar">AU</div>
+      <div class="attendee-name">Alex Uruchurtu</div>
+      <div class="attendee-role">Soap Kingpin of Miami</div>
+    </div>
+    <div class="attendee r-scale">
+      <div class="attendee-avatar">PD</div>
+      <div class="attendee-name">Peter Doyle</div>
+      <div class="attendee-role"></div>
+    </div>
+    <div class="attendee r-scale">
+      <div class="attendee-avatar">CH</div>
+      <div class="attendee-name">Connor Huff</div>
+      <div class="attendee-role"></div>
+    </div>
+    <div class="attendee r-scale">
+      <div class="attendee-avatar">JR</div>
+      <div class="attendee-name">James Ruben</div>
+      <div class="attendee-role"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ BOOKING STATUS ═══════════ -->
+<section class="section" id="status">
+  <div class="section-eyebrow r">Logistics</div>
+  <div class="section-title r">Booking Status</div>
+  <div class="section-desc r">What still needs to get locked down. Check off when it's done. Change the assignee if needed.</div>
+
+  <div class="day r" style="padding:1.5rem 2rem">
+    <div class="checklist">
+      <div class="check-row">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <span class="check-label"><a href="https://mila-miami.com/" target="_blank">Dinner at Mila</a> — Fri</span>
+        <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>TBD</option></select>
+        <span class="check-status">Not Booked</span>
+      </div>
+      <div class="check-row">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <span class="check-label"><a href="https://mila-miami.com/" target="_blank">The Club at Mila</a> — Fri</span>
+        <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>TBD</option></select>
+        <span class="check-status">Not Booked</span>
+      </div>
+      <div class="check-row">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <span class="check-label"><a href="https://maps.app.goo.gl/2KKdfBmuceFPDgqJ7?g_st=i&utm_campaign=ac-im" target="_blank">Dinner at Mary Lou's</a> — Sat</span>
+        <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>TBD</option></select>
+        <span class="check-status">Not Booked</span>
+      </div>
+      <div class="check-row">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <span class="check-label">La Vitoria — Sat</span>
+        <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>TBD</option></select>
+        <span class="check-status">Not Booked</span>
+      </div>
+      <div class="check-row">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <span class="check-label"><a href="https://www.reservepadel.com/" target="_blank">Padel at Reserve</a> — Sun</span>
+        <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>TBD</option></select>
+        <span class="check-status">Not Booked</span>
+      </div>
+      <div class="check-row">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <span class="check-label"><a href="https://sunnysmia.com/" target="_blank">Dinner at Sunny Steakhouse</a> — Sun</span>
+        <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>TBD</option></select>
+        <span class="check-status">Not Booked</span>
+      </div>
+      <div class="check-row">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <span class="check-label">Accommodations</span>
+        <select class="assignee-select" title="Assignee"><option>Uru</option><option selected>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>TBD</option></select>
+        <span class="check-status">Not Booked</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="uru-note r">
+    <strong>On Uru</strong>
+    Most of these bookings are going through <em>Alex Uruchurtu</em> — the Soap Kingpin of Miami and the most connected man in our group by a wide margin. If it involves a table, a reservation, or getting past a door, he's handling it. Send him your questions, your requests, and your gratitude.
+  </div>
+</section>
+</div>
+
+<div class="meander"></div>
+
+<footer>
+  <div class="footer-title">🏛️ PSK's Bar Mitzvah 🌴</div>
+  <div class="footer-sub">Miami Beach — May 22–25, 2026</div>
+</footer>
+
+<script>
+// ═══ SCROLL REVEAL ═══
+const revealEls = document.querySelectorAll('.r,.r-left,.r-right,.r-scale');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('v'); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+revealEls.forEach(el => obs.observe(el));
+
+// ═══ BET BAR ANIMATION ═══
+const betObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const fill = e.target.querySelector('.bet-bar-fill');
+      if (fill) { fill.style.width = fill.dataset.width + '%'; }
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.bet-card').forEach(el => betObs.observe(el));
+
+// ═══ NAV HIDE ON SCROLL ═══
+let lastY = 0;
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  document.querySelector('nav').classList.toggle('hide', y > lastY && y > 100);
+  lastY = y;
+}, { passive: true });
+
+// ═══ CHECKBOX TOGGLE ═══
+function toggleCheck(box) {
+  box.classList.toggle('checked');
+  const row = box.closest('.check-row');
+  row.classList.toggle('done');
+  const status = row.querySelector('.check-status');
+  if (box.classList.contains('checked')) {
+    status.textContent = 'Booked';
+    status.style.color = '#5a9a6a';
+  } else {
+    status.textContent = 'Not Booked';
+    status.style.color = '#c0513f';
+  }
+}
+</script>
+
+</body>
+</html>
