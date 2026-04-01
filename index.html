@@ -222,6 +222,23 @@ footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
 
+/* ═══ PASSWORD GATE ═══ */
+#gate{position:fixed;inset:0;z-index:999;background:#0f1923;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;transition:opacity .6s cubic-bezier(.22,1,.36,1)}
+#gate.unlocking{opacity:0;pointer-events:none}
+.gate-eyebrow{font-size:.65rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#c4a44a;margin-bottom:1.5rem}
+.gate-title{font-family:'DM Serif Display',serif;font-size:clamp(2rem,7vw,4rem);color:#f5f0e8;line-height:.95;margin-bottom:.5rem}
+.gate-title em{font-style:italic;color:#c4a44a}
+.gate-sub{font-family:'DM Serif Display',serif;font-size:1rem;font-style:italic;color:#4a5a6a;margin-bottom:3rem}
+.gate-form{display:flex;flex-direction:column;align-items:center;gap:.75rem;width:100%;max-width:320px}
+.gate-input{width:100%;font-family:'DM Sans',sans-serif;font-size:.9rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:.75rem 1rem;color:#f5f0e8;outline:none;text-align:center;letter-spacing:.04em;transition:border-color .2s}
+.gate-input:focus{border-color:rgba(196,164,74,.5)}
+.gate-input::placeholder{color:#4a5a6a}
+.gate-btn{width:100%;font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:#c4a44a;color:#0f1923;border:none;border-radius:8px;padding:.75rem 1.5rem;cursor:pointer;transition:background .2s,transform .1s}
+.gate-btn:hover{background:#d4b45a}
+.gate-btn:active{transform:scale(.97)}
+.gate-error{font-size:.75rem;color:#c0513f;opacity:0;transition:opacity .2s;font-family:'JetBrains Mono',monospace}
+.gate-error.show{opacity:1}
+
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:600px){
   nav{padding:.6rem 1rem}
@@ -240,6 +257,17 @@ footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
 </style>
 </head>
 <body>
+
+<div id="gate">
+  <div class="gate-eyebrow">Miami · Memorial Day Weekend · 2026</div>
+  <div class="gate-title">PSK's<br><em>Bar Mitzvah</em></div>
+  <div class="gate-sub">Friends only.</div>
+  <div class="gate-form">
+    <input class="gate-input" type="password" id="gateInput" placeholder="enter password" autocomplete="off">
+    <button class="gate-btn" onclick="tryUnlock()">Enter</button>
+    <span class="gate-error" id="gateError">Wrong password. Try again.</span>
+  </div>
+</div>
 
 <nav>
   <div class="nav-logo">PSK's Bar Mitzvah</div>
@@ -693,6 +721,34 @@ footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 <script>
+// ═══ PASSWORD GATE ═══
+(function() {
+  if (sessionStorage.getItem('psk-bach-unlocked') === '1') {
+    document.getElementById('gate').style.display = 'none';
+  }
+})();
+
+function tryUnlock() {
+  const val = document.getElementById('gateInput').value.trim().toLowerCase().replace(/\s+/g,'');
+  if (val === 'bestfriendsstayuntilmonday') {
+    sessionStorage.setItem('psk-bach-unlocked', '1');
+    const gate = document.getElementById('gate');
+    gate.classList.add('unlocking');
+    gate.addEventListener('transitionend', () => gate.style.display = 'none', { once: true });
+  } else {
+    const err = document.getElementById('gateError');
+    err.classList.add('show');
+    document.getElementById('gateInput').value = '';
+    document.getElementById('gateInput').focus();
+    setTimeout(() => err.classList.remove('show'), 2500);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const input = document.getElementById('gateInput');
+  if (input) input.addEventListener('keydown', e => { if (e.key === 'Enter') tryUnlock(); });
+});
+
 // ═══ FIREBASE ═══
 firebase.initializeApp({
   apiKey: "AIzaSyABrI-X70fgme2rSYfzJ8xguf5x2eqHP9s",
