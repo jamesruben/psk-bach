@@ -174,7 +174,19 @@ nav.hide{transform:translateY(-100%)}
 .bet-odds{font-family:'JetBrains Mono',monospace;font-size:.85rem;font-weight:500;color:#1a3a5c;background:#eef3f8;padding:.3rem .7rem;border-radius:4px;white-space:nowrap}
 .bet-bar{height:5px;background:#f2f0ec}
 .bet-bar-fill{height:100%;border-radius:0 3px 3px 0;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
-.bet-footer{padding:.6rem 1.5rem;font-size:.7rem;color:#aaa;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace}
+.bet-footer{padding:.6rem 1.5rem;font-size:.7rem;color:#aaa;display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace}
+.add-bet-form{background:#fff;border:1px dashed #d8d5cf;border-radius:14px;padding:1.5rem 2rem;margin-top:.5rem}
+.add-bet-form-title{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#1a3a5c;margin-bottom:1rem}
+.add-bet-input{width:100%;font-family:'DM Sans',sans-serif;font-size:.88rem;border:1px solid #e8e6e1;border-radius:8px;padding:.5rem .8rem;color:#1a1a1a;outline:none;background:#fafaf7;transition:border-color .2s;margin-bottom:.75rem;box-sizing:border-box}
+.add-bet-input:focus{border-color:#1a3a5c}
+.add-bet-controls{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+.bet-type-toggle{display:flex;background:#f2f0ec;border-radius:6px;padding:2px;flex-shrink:0}
+.bet-type-btn{font-family:'DM Sans',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:none;border:none;padding:.3rem .7rem;border-radius:4px;cursor:pointer;color:#aaa;transition:all .2s}
+.bet-type-btn.active{background:#fff;color:#1a3a5c;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.add-bet-value{font-family:'JetBrains Mono',monospace;font-size:.82rem;border:1px solid #e8e6e1;border-radius:6px;padding:.38rem .7rem;color:#1a1a1a;outline:none;background:#fafaf7;width:90px;transition:border-color .2s}
+.add-bet-value:focus{border-color:#1a3a5c}
+.add-bet-submit{font-family:'DM Sans',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#1a3a5c;color:#fff;border:none;border-radius:6px;padding:.4rem .9rem;cursor:pointer;white-space:nowrap;transition:background .2s;margin-left:auto}
+.add-bet-submit:hover{background:#24527d}
 
 /* ═══ FOOTER ═══ */
 footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
@@ -431,6 +443,19 @@ footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
     <div class="bet-footer">
       <span>Line: 1.5 beers</span>
       <span>Smart money: Under</span>
+    </div>
+  </div>
+
+  <div class="add-bet-form r" id="addBetForm">
+    <div class="add-bet-form-title">Add a Bet</div>
+    <input class="add-bet-input" type="text" id="newBetTitle" placeholder="Write the bet…">
+    <div class="add-bet-controls">
+      <div class="bet-type-toggle">
+        <button class="bet-type-btn active" id="btnOdds" onclick="setBetType('odds')">Odds</button>
+        <button class="bet-type-btn" id="btnOU" onclick="setBetType('ou')">O/U</button>
+      </div>
+      <input class="add-bet-value" type="text" id="newBetValue" placeholder="+1400">
+      <button class="add-bet-submit" onclick="addBet()">+ Add</button>
     </div>
   </div>
 </section>
@@ -730,6 +755,96 @@ function addTask() {
 
 function removeTask(id) {
   taskStateRef.child(id).remove();
+}
+
+// ═══ BETS ═══
+const betsRef = firebase.database().ref('bets');
+let currentBetType = 'odds';
+
+function setBetType(type) {
+  currentBetType = type;
+  document.getElementById('btnOdds').classList.toggle('active', type === 'odds');
+  document.getElementById('btnOU').classList.toggle('active', type === 'ou');
+  document.getElementById('newBetValue').placeholder = type === 'odds' ? '+1400' : '1.5';
+}
+
+function oddsToImplied(val) {
+  const n = parseInt(String(val).replace(/[^\d-]/g, ''));
+  if (isNaN(n) || n === 0) return 50;
+  return n > 0
+    ? Math.round(100 / (n + 100) * 100)
+    : Math.round(Math.abs(n) / (Math.abs(n) + 100) * 100);
+}
+
+function formatOddsDisplay(type, value) {
+  if (type === 'ou') return `O/U ${value}`;
+  const n = parseInt(String(value).replace(/[^\d-]/g, ''));
+  if (isNaN(n)) return value;
+  return n >= 0 ? `+${n}` : `${n}`;
+}
+
+function getBarMeta(type, value) {
+  if (type === 'ou') {
+    return { width: 50, color: '#a08030', impliedLabel: `Line: ${value}`, consensus: 'Smart money: TBD' };
+  }
+  const implied = oddsToImplied(value);
+  let color, consensus;
+  if (implied >= 75)      { color = '#5a9a6a'; consensus = 'Consensus: Yes'; }
+  else if (implied >= 55) { color = '#7aaa8a'; consensus = 'Lean: Yes'; }
+  else if (implied >= 45) { color = '#a08030'; consensus = 'Toss-up'; }
+  else if (implied >= 25) { color = '#c08050'; consensus = 'Lean: No'; }
+  else                    { color = '#c0513f'; consensus = 'Consensus: No'; }
+  return { width: implied, color, impliedLabel: `Implied: ${implied}%`, consensus };
+}
+
+function createBetCard(id, bet) {
+  const meta = getBarMeta(bet.type, bet.value);
+  const card = document.createElement('div');
+  card.className = 'bet-card';
+  card.dataset.id = id;
+  card.innerHTML = `
+    <div class="bet-header">
+      <div class="bet-title">${escapeHtml(bet.title)}</div>
+      <div class="bet-odds">${formatOddsDisplay(bet.type, bet.value)}</div>
+    </div>
+    <div class="bet-bar"><div class="bet-bar-fill" style="width:0%;background:${meta.color};transition:width 1.2s cubic-bezier(.22,1,.36,1)" data-width="${meta.width}"></div></div>
+    <div class="bet-footer">
+      <span>${meta.impliedLabel}</span>
+      <span>${meta.consensus}</span>
+      <button class="remove-task-btn" onclick="removeBet('${id}')">×</button>
+    </div>
+  `;
+  setTimeout(() => {
+    const fill = card.querySelector('.bet-bar-fill');
+    if (fill) fill.style.width = meta.width + '%';
+  }, 100);
+  return card;
+}
+
+betsRef.on('value', snapshot => {
+  const bets = snapshot.val() || {};
+  const form = document.getElementById('addBetForm');
+  const rendered = new Set(Array.from(document.querySelectorAll('.bet-card[data-id]')).map(c => c.dataset.id));
+  const fbIds = new Set(Object.keys(bets));
+  Object.entries(bets).forEach(([id, bet]) => {
+    if (!rendered.has(id)) form.parentNode.insertBefore(createBetCard(id, bet), form);
+  });
+  rendered.forEach(id => {
+    if (!fbIds.has(id)) document.querySelector(`.bet-card[data-id="${id}"]`)?.remove();
+  });
+});
+
+function addBet() {
+  const title = document.getElementById('newBetTitle').value.trim();
+  const value = document.getElementById('newBetValue').value.trim();
+  if (!title || !value) return;
+  betsRef.child('bet-' + Date.now()).set({ title, type: currentBetType, value });
+  document.getElementById('newBetTitle').value = '';
+  document.getElementById('newBetValue').value = '';
+}
+
+function removeBet(id) {
+  betsRef.child(id).remove();
 }
 
 // ═══ SCROLL REVEAL ═══
