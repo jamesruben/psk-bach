@@ -430,7 +430,6 @@ footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
     <div class="bet-bar"><div class="bet-bar-fill" data-width="7" style="width:0%;background:#c0513f"></div></div>
     <div class="bet-footer">
       <span>Implied: 6.7%</span>
-      <span>Consensus: No</span>
     </div>
   </div>
 
@@ -442,7 +441,6 @@ footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
     <div class="bet-bar"><div class="bet-bar-fill" data-width="50" style="width:0%;background:#a08030"></div></div>
     <div class="bet-footer">
       <span>Line: 1.5 beers</span>
-      <span>Smart money: Under</span>
     </div>
   </div>
 
@@ -785,16 +783,16 @@ function formatOddsDisplay(type, value) {
 
 function getBarMeta(type, value) {
   if (type === 'ou') {
-    return { width: 50, color: '#a08030', impliedLabel: `Line: ${value}`, consensus: 'Smart money: TBD' };
+    return { width: 50, color: '#a08030', impliedLabel: `Line: ${value}` };
   }
   const implied = oddsToImplied(value);
-  let color, consensus;
-  if (implied >= 75)      { color = '#5a9a6a'; consensus = 'Consensus: Yes'; }
-  else if (implied >= 55) { color = '#7aaa8a'; consensus = 'Lean: Yes'; }
-  else if (implied >= 45) { color = '#a08030'; consensus = 'Toss-up'; }
-  else if (implied >= 25) { color = '#c08050'; consensus = 'Lean: No'; }
-  else                    { color = '#c0513f'; consensus = 'Consensus: No'; }
-  return { width: implied, color, impliedLabel: `Implied: ${implied}%`, consensus };
+  let color;
+  if (implied >= 75)      { color = '#5a9a6a'; }
+  else if (implied >= 55) { color = '#7aaa8a'; }
+  else if (implied >= 45) { color = '#a08030'; }
+  else if (implied >= 25) { color = '#c08050'; }
+  else                    { color = '#c0513f'; }
+  return { width: implied, color, impliedLabel: `Implied: ${implied}%` };
 }
 
 function createBetCard(id, bet) {
@@ -810,7 +808,6 @@ function createBetCard(id, bet) {
     <div class="bet-bar"><div class="bet-bar-fill" style="width:0%;background:${meta.color};transition:width 1.2s cubic-bezier(.22,1,.36,1)" data-width="${meta.width}"></div></div>
     <div class="bet-footer">
       <span>${meta.impliedLabel}</span>
-      <span>${meta.consensus}</span>
       <button class="remove-task-btn" onclick="removeBet('${id}')">×</button>
     </div>
   `;
