@@ -134,6 +134,13 @@ nav.hide{transform:translateY(-100%)}
 .backup-item-name a{color:inherit;text-decoration:none;border-bottom:1px solid #ddd;transition:border-color .2s}
 .backup-item-name a:hover{border-color:#1a3a5c}
 .backup-item-note{color:#999;font-size:.82rem}
+.backup-item .remove-task-btn{margin-left:auto;opacity:0;transition:opacity .2s}
+.backup-item:hover .remove-task-btn{opacity:1}
+.add-suggestion-row{display:flex;gap:.5rem;margin-top:.75rem;align-items:center}
+.add-suggestion-input{flex:1;font-family:'DM Sans',sans-serif;font-size:.82rem;border:1px solid #e8e6e1;border-radius:6px;padding:.35rem .65rem;color:#1a1a1a;outline:none;background:#fafaf7;transition:border-color .2s}
+.add-suggestion-input:focus{border-color:#1a3a5c}
+.add-suggestion-btn{font-family:'DM Sans',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#1a3a5c;color:#fff;border:none;border-radius:6px;padding:.35rem .75rem;cursor:pointer;white-space:nowrap;transition:background .2s}
+.add-suggestion-btn:hover{background:#24527d}
 
 /* ═══ ACCOMMODATIONS ═══ */
 .accom-card{background:#fff;border:1px solid #e8e6e1;border-radius:14px;padding:1.75rem 2rem;margin-bottom:1.25rem;transition:box-shadow .4s cubic-bezier(.22,1,.36,1),transform .4s cubic-bezier(.22,1,.36,1)}
@@ -470,9 +477,10 @@ footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
       <span class="backup-item-name"><a href="https://www.cipriani.com/cipriani-miami-living-room" target="_blank">Cipriani</a></span>
       <span class="backup-item-note">— Could swap into any night.</span>
     </div>
-    <div class="backup-item">
-      <span class="backup-item-name"><span class="tag tag-tbd">TBD</span></span>
-      <span class="backup-item-note">— Open to suggestions.</span>
+    <div id="dinner-suggestions"></div>
+    <div class="add-suggestion-row">
+      <input class="add-suggestion-input" type="text" id="newDinnerSuggestion" placeholder="Suggest a dinner spot…">
+      <button class="add-suggestion-btn" onclick="addSuggestion('dinners', 'newDinnerSuggestion')">+ Add</button>
     </div>
   </div>
 
@@ -482,9 +490,10 @@ footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
       <span class="backup-item-name"><a href="https://www.cipriani.com/cipriani-miami-living-room" target="_blank">Living Room</a></span>
       <span class="backup-item-note">— Downstairs from Cipriani. Easy combo.</span>
     </div>
-    <div class="backup-item">
-      <span class="backup-item-name"><span class="tag tag-tbd">TBD</span></span>
-      <span class="backup-item-note">— Open to suggestions.</span>
+    <div id="nightlife-suggestions"></div>
+    <div class="add-suggestion-row">
+      <input class="add-suggestion-input" type="text" id="newNightlifeSuggestion" placeholder="Suggest a nightlife spot…">
+      <button class="add-suggestion-btn" onclick="addSuggestion('nightlife', 'newNightlifeSuggestion')">+ Add</button>
     </div>
   </div>
 </section>
@@ -842,6 +851,50 @@ function addBet() {
 
 function removeBet(id) {
   betsRef.child(id).remove();
+}
+
+// ═══ SUGGESTIONS ═══
+const suggestionsRef = firebase.database().ref('suggestions');
+
+function renderSuggestion(category, id, item) {
+  const div = document.createElement('div');
+  div.className = 'backup-item';
+  div.dataset.id = id;
+  div.innerHTML = `
+    <span class="backup-item-name">${escapeHtml(item.name)}</span>
+    ${item.note ? `<span class="backup-item-note">— ${escapeHtml(item.note)}</span>` : ''}
+    <button class="remove-task-btn" onclick="removeSuggestion('${category}','${id}')">×</button>
+  `;
+  return div;
+}
+
+suggestionsRef.on('value', snapshot => {
+  const all = snapshot.val() || {};
+  ['dinners', 'nightlife'].forEach(cat => {
+    const container = document.getElementById(`${cat === 'dinners' ? 'dinner' : 'nightlife'}-suggestions`);
+    const items = all[cat] || {};
+    const rendered = new Set(Array.from(container.querySelectorAll('.backup-item[data-id]')).map(el => el.dataset.id));
+    const fbIds = new Set(Object.keys(items));
+    Object.entries(items).forEach(([id, item]) => {
+      if (!rendered.has(id)) container.appendChild(renderSuggestion(cat, id, item));
+    });
+    rendered.forEach(id => {
+      if (!fbIds.has(id)) container.querySelector(`[data-id="${id}"]`)?.remove();
+    });
+  });
+});
+
+function addSuggestion(category, inputId) {
+  const input = document.getElementById(inputId);
+  const raw = input.value.trim();
+  if (!raw) return;
+  const [name, ...rest] = raw.split('—').map(s => s.trim());
+  suggestionsRef.child(category).child('s-' + Date.now()).set({ name, note: rest.join('—') || '' });
+  input.value = '';
+}
+
+function removeSuggestion(category, id) {
+  suggestionsRef.child(category).child(id).remove();
 }
 
 // ═══ SCROLL REVEAL ═══
