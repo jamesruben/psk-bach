@@ -736,7 +736,7 @@ footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
 
 function tryUnlock() {
   const val = document.getElementById('gateInput').value.trim().toLowerCase().replace(/\s+/g,'');
-  if (val === 'bestfriendsstayuntilmonday') {
+  if (val === 'psk') {
     sessionStorage.setItem('psk-bach-unlocked', '1');
     const gate = document.getElementById('gate');
     gate.classList.add('unlocking');
