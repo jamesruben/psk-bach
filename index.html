@@ -200,6 +200,28 @@ footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
 .footer-title{font-family:'DM Serif Display',serif;font-size:1.4rem;color:#f5f0e8;margin-bottom:.35rem}
 .footer-sub{font-size:.78rem;font-style:italic;color:#4a5a6a}
 
+/* ═══ ANIMATE & DELIGHT ═══ */
+.add-task-btn,.add-suggestion-btn,.add-bet-submit{transition:background .2s,transform .1s,box-shadow .2s}
+.add-task-btn:hover,.add-suggestion-btn:hover,.add-bet-submit:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(26,58,92,.25)}
+.add-task-btn:active,.add-suggestion-btn:active,.add-bet-submit:active{transform:scale(.96) translateY(0);box-shadow:none;transition:transform .08s}
+.bet-type-btn{transition:all .2s cubic-bezier(.22,1,.36,1)}
+
+@keyframes checkPulse{0%{transform:scale(1)}40%{transform:scale(1.22)}75%{transform:scale(.92)}100%{transform:scale(1)}}
+.check-box.pulse{animation:checkPulse .32s cubic-bezier(.22,1,.36,1)}
+
+@keyframes rowDone{0%{background:transparent}30%{background:rgba(90,154,106,.08)}100%{background:transparent}}
+.check-row.flash-done{animation:rowDone .75s cubic-bezier(.22,1,.36,1);border-radius:6px}
+
+@keyframes slideInDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.slide-in{animation:slideInDown .35s cubic-bezier(.22,1,.36,1)}
+
+@keyframes flashNew{0%{box-shadow:0 0 0 3px rgba(196,164,74,.4)}100%{box-shadow:0 0 0 0 rgba(196,164,74,0)}}
+.flash-new{animation:flashNew .8s cubic-bezier(.22,1,.36,1)}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:600px){
   nav{padding:.6rem 1rem}
@@ -683,6 +705,12 @@ firebase.initializeApp({
 });
 const taskStateRef = firebase.database().ref('taskState');
 const checklist = document.querySelector('.checklist');
+const pendingAnimations = new Set();
+
+function animateIn(el, classes) {
+  classes.forEach(c => el.classList.add(c));
+  el.addEventListener('animationend', () => classes.forEach(c => el.classList.remove(c)), { once: true });
+}
 const NAMES = ['Uru','James','Crown','Freese','PSK','Owen','Doyle','Huff','TBD'];
 
 function escapeHtml(s) {
@@ -710,6 +738,7 @@ function createCustomRow(id, task) {
   row.className = 'check-row' + (task.checked ? ' done' : '');
   row.dataset.id = id;
   row.dataset.custom = '1';
+  if (pendingAnimations.has(id)) { pendingAnimations.delete(id); setTimeout(() => animateIn(row, ['slide-in']), 10); }
   row.innerHTML = `
     <div class="check-box${task.checked?' checked':''}" onclick="toggleCheck(this)"></div>
     <span class="check-label">${escapeHtml(task.label)}</span>
@@ -754,7 +783,9 @@ function addTask() {
   const input = document.getElementById('newTaskLabel');
   const label = input.value.trim();
   if (!label) return;
-  taskStateRef.child('custom-' + Date.now()).set({
+  const id = 'custom-' + Date.now();
+  pendingAnimations.add(id);
+  taskStateRef.child(id).set({
     label, assignee: document.getElementById('newTaskAssignee').value, checked: false, custom: true
   });
   input.value = '';
@@ -809,6 +840,7 @@ function createBetCard(id, bet) {
   const card = document.createElement('div');
   card.className = 'bet-card';
   card.dataset.id = id;
+  if (pendingAnimations.has(id)) { pendingAnimations.delete(id); setTimeout(() => animateIn(card, ['slide-in', 'flash-new']), 10); }
   card.innerHTML = `
     <div class="bet-header">
       <div class="bet-title">${escapeHtml(bet.title)}</div>
@@ -844,7 +876,9 @@ function addBet() {
   const title = document.getElementById('newBetTitle').value.trim();
   const value = document.getElementById('newBetValue').value.trim();
   if (!title || !value) return;
-  betsRef.child('bet-' + Date.now()).set({ title, type: currentBetType, value });
+  const id = 'bet-' + Date.now();
+  pendingAnimations.add(id);
+  betsRef.child(id).set({ title, type: currentBetType, value });
   document.getElementById('newBetTitle').value = '';
   document.getElementById('newBetValue').value = '';
 }
@@ -860,6 +894,7 @@ function renderSuggestion(category, id, item) {
   const div = document.createElement('div');
   div.className = 'backup-item';
   div.dataset.id = id;
+  if (pendingAnimations.has(id)) { pendingAnimations.delete(id); setTimeout(() => animateIn(div, ['slide-in']), 10); }
   div.innerHTML = `
     <span class="backup-item-name">${escapeHtml(item.name)}</span>
     ${item.note ? `<span class="backup-item-note">— ${escapeHtml(item.note)}</span>` : ''}
@@ -888,8 +923,10 @@ function addSuggestion(category, inputId) {
   const input = document.getElementById(inputId);
   const raw = input.value.trim();
   if (!raw) return;
+  const id = 's-' + Date.now();
+  pendingAnimations.add(id);
   const [name, ...rest] = raw.split('—').map(s => s.trim());
-  suggestionsRef.child(category).child('s-' + Date.now()).set({ name, note: rest.join('—') || '' });
+  suggestionsRef.child(category).child(id).set({ name, note: rest.join('—') || '' });
   input.value = '';
 }
 
@@ -933,7 +970,16 @@ function toggleCheck(box) {
   status.textContent = checked ? 'DONE' : 'NOT DONE';
   status.style.color = checked ? '#5a9a6a' : '#c0513f';
   taskStateRef.child(row.dataset.id).update({ checked });
+  if (checked) {
+    animateIn(box, ['pulse']);
+    animateIn(row, ['flash-done']);
+  }
 }
+
+// ═══ EASTER EGG ═══
+console.log('%c🌴 PSK\'s Bar Mitzvah 🏛️', 'font-size:18px;font-weight:bold;color:#c4a44a;font-family:serif');
+console.log('%cMiami Beach · May 22–25, 2026', 'font-size:12px;color:#1a3a5c');
+console.log('%cSnooping around, James?', 'font-size:11px;color:#aaa;font-style:italic');
 </script>
 
 </body>
