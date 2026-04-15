@@ -116,7 +116,14 @@ nav.hide{transform:translateY(-100%)}
 .check-label{flex:1;color:#1a1a1a;font-weight:500}
 .check-label a{color:inherit;text-decoration:none;border-bottom:1px solid #ddd}
 .check-label a:hover{border-color:#1a3a5c}
-.check-status{font-size:.58rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#c0513f;white-space:nowrap;transition:color .3s}
+.check-status{font-size:.58rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#c0513f;white-space:nowrap;transition:color .3s;min-width:4.5rem;text-align:right}
+.add-task-row{display:flex;gap:.5rem;padding:.85rem 0;border-top:1px solid #f2f0ec;align-items:center;flex-wrap:wrap}
+.add-task-input{flex:1;min-width:120px;font-family:'DM Sans',sans-serif;font-size:.82rem;border:1px solid #e8e6e1;border-radius:6px;padding:.38rem .7rem;color:#1a1a1a;outline:none;background:#fafaf7;transition:border-color .2s}
+.add-task-input:focus{border-color:#1a3a5c}
+.add-task-btn{font-family:'DM Sans',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#1a3a5c;color:#fff;border:none;border-radius:6px;padding:.4rem .9rem;cursor:pointer;white-space:nowrap;transition:background .2s}
+.add-task-btn:hover{background:#24527d}
+.remove-task-btn{font-size:1rem;color:#ccc;background:none;border:none;cursor:pointer;padding:0 .25rem;line-height:1;transition:color .2s;flex-shrink:0}
+.remove-task-btn:hover{color:#c0513f}
 
 /* ═══ BACKUPS ═══ */
 .backup-section{background:#fff;border:1px dashed #d8d5cf;border-radius:14px;padding:1.5rem 2rem;margin-bottom:1.25rem;transition:box-shadow .4s cubic-bezier(.22,1,.36,1)}
@@ -127,6 +134,13 @@ nav.hide{transform:translateY(-100%)}
 .backup-item-name a{color:inherit;text-decoration:none;border-bottom:1px solid #ddd;transition:border-color .2s}
 .backup-item-name a:hover{border-color:#1a3a5c}
 .backup-item-note{color:#999;font-size:.82rem}
+.backup-item .remove-task-btn{margin-left:.35rem;opacity:0;transition:opacity .2s}
+.backup-item:hover .remove-task-btn{opacity:1}
+.add-suggestion-row{display:flex;gap:.5rem;margin-top:.75rem;align-items:center}
+.add-suggestion-input{flex:1;font-family:'DM Sans',sans-serif;font-size:.82rem;border:1px solid #e8e6e1;border-radius:6px;padding:.35rem .65rem;color:#1a1a1a;outline:none;background:#fafaf7;transition:border-color .2s}
+.add-suggestion-input:focus{border-color:#1a3a5c}
+.add-suggestion-btn{font-family:'DM Sans',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#1a3a5c;color:#fff;border:none;border-radius:6px;padding:.35rem .75rem;cursor:pointer;white-space:nowrap;transition:background .2s}
+.add-suggestion-btn:hover{background:#24527d}
 
 /* ═══ ACCOMMODATIONS ═══ */
 .accom-card{background:#fff;border:1px solid #e8e6e1;border-radius:14px;padding:1.75rem 2rem;margin-bottom:1.25rem;transition:box-shadow .4s cubic-bezier(.22,1,.36,1),transform .4s cubic-bezier(.22,1,.36,1)}
@@ -155,6 +169,7 @@ nav.hide{transform:translateY(-100%)}
 .attendee:hover .attendee-avatar{transform:scale(1.08)}
 .attendee-name{font-size:.82rem;font-weight:600;color:#1a1a1a;line-height:1.3}
 .attendee-role{font-size:.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#aaa;margin-top:.25rem}
+.attendee-stat{font-size:.58rem;color:#bbb;font-family:'JetBrains Mono',monospace;margin-top:.4rem;line-height:1.4}
 .attendee.bachelor{border-color:#d4b85a}
 .attendee.bachelor .attendee-avatar{background:#faf5e8;color:#9a8030}
 
@@ -166,12 +181,63 @@ nav.hide{transform:translateY(-100%)}
 .bet-odds{font-family:'JetBrains Mono',monospace;font-size:.85rem;font-weight:500;color:#1a3a5c;background:#eef3f8;padding:.3rem .7rem;border-radius:4px;white-space:nowrap}
 .bet-bar{height:5px;background:#f2f0ec}
 .bet-bar-fill{height:100%;border-radius:0 3px 3px 0;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
-.bet-footer{padding:.6rem 1.5rem;font-size:.7rem;color:#aaa;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace}
+.bet-footer{padding:.6rem 1.5rem;font-size:.7rem;color:#aaa;display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace}
+.add-bet-form{background:#fff;border:1px dashed #d8d5cf;border-radius:14px;padding:1.5rem 2rem;margin-top:.5rem}
+.add-bet-form-title{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#1a3a5c;margin-bottom:1rem}
+.add-bet-input{width:100%;font-family:'DM Sans',sans-serif;font-size:.88rem;border:1px solid #e8e6e1;border-radius:8px;padding:.5rem .8rem;color:#1a1a1a;outline:none;background:#fafaf7;transition:border-color .2s;margin-bottom:.75rem;box-sizing:border-box}
+.add-bet-input:focus{border-color:#1a3a5c}
+.add-bet-controls{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+.bet-type-toggle{display:flex;background:#f2f0ec;border-radius:6px;padding:2px;flex-shrink:0}
+.bet-type-btn{font-family:'DM Sans',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:none;border:none;padding:.3rem .7rem;border-radius:4px;cursor:pointer;color:#aaa;transition:all .2s}
+.bet-type-btn.active{background:#fff;color:#1a3a5c;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.add-bet-value{font-family:'JetBrains Mono',monospace;font-size:.82rem;border:1px solid #e8e6e1;border-radius:6px;padding:.38rem .7rem;color:#1a1a1a;outline:none;background:#fafaf7;width:90px;transition:border-color .2s}
+.add-bet-value:focus{border-color:#1a3a5c}
+.add-bet-submit{font-family:'DM Sans',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#1a3a5c;color:#fff;border:none;border-radius:6px;padding:.4rem .9rem;cursor:pointer;white-space:nowrap;transition:background .2s;margin-left:auto}
+.add-bet-submit:hover{background:#24527d}
 
 /* ═══ FOOTER ═══ */
 footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
 .footer-title{font-family:'DM Serif Display',serif;font-size:1.4rem;color:#f5f0e8;margin-bottom:.35rem}
 .footer-sub{font-size:.78rem;font-style:italic;color:#4a5a6a}
+
+/* ═══ ANIMATE & DELIGHT ═══ */
+.add-task-btn,.add-suggestion-btn,.add-bet-submit{transition:background .2s,transform .1s,box-shadow .2s}
+.add-task-btn:hover,.add-suggestion-btn:hover,.add-bet-submit:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(26,58,92,.25)}
+.add-task-btn:active,.add-suggestion-btn:active,.add-bet-submit:active{transform:scale(.96) translateY(0);box-shadow:none;transition:transform .08s}
+.bet-type-btn{transition:all .2s cubic-bezier(.22,1,.36,1)}
+
+@keyframes checkPulse{0%{transform:scale(1)}40%{transform:scale(1.22)}75%{transform:scale(.92)}100%{transform:scale(1)}}
+.check-box.pulse{animation:checkPulse .32s cubic-bezier(.22,1,.36,1)}
+
+@keyframes rowDone{0%{background:transparent}30%{background:rgba(90,154,106,.08)}100%{background:transparent}}
+.check-row.flash-done{animation:rowDone .75s cubic-bezier(.22,1,.36,1);border-radius:6px}
+
+@keyframes slideInDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.slide-in{animation:slideInDown .35s cubic-bezier(.22,1,.36,1)}
+
+@keyframes flashNew{0%{box-shadow:0 0 0 3px rgba(196,164,74,.4)}100%{box-shadow:0 0 0 0 rgba(196,164,74,0)}}
+.flash-new{animation:flashNew .8s cubic-bezier(.22,1,.36,1)}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+/* ═══ PASSWORD GATE ═══ */
+#gate{position:fixed;inset:0;z-index:999;background:#0f1923;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;transition:opacity .6s cubic-bezier(.22,1,.36,1)}
+#gate.unlocking{opacity:0;pointer-events:none}
+.gate-eyebrow{font-size:.65rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#c4a44a;margin-bottom:1.5rem}
+.gate-title{font-family:'DM Serif Display',serif;font-size:clamp(2rem,7vw,4rem);color:#f5f0e8;line-height:.95;margin-bottom:.5rem}
+.gate-title em{font-style:italic;color:#c4a44a}
+.gate-sub{font-family:'DM Serif Display',serif;font-size:1rem;font-style:italic;color:#4a5a6a;margin-bottom:3rem}
+.gate-form{display:flex;flex-direction:column;align-items:center;gap:.75rem;width:100%;max-width:320px}
+.gate-input{width:100%;font-family:'DM Sans',sans-serif;font-size:.9rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:.75rem 1rem;color:#f5f0e8;outline:none;text-align:center;letter-spacing:.04em;transition:border-color .2s}
+.gate-input:focus{border-color:rgba(196,164,74,.5)}
+.gate-input::placeholder{color:#4a5a6a}
+.gate-btn{width:100%;font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:#c4a44a;color:#0f1923;border:none;border-radius:8px;padding:.75rem 1.5rem;cursor:pointer;transition:background .2s,transform .1s}
+.gate-btn:hover{background:#d4b45a}
+.gate-btn:active{transform:scale(.97)}
+.gate-error{font-size:.75rem;color:#c0513f;opacity:0;transition:opacity .2s;font-family:'JetBrains Mono',monospace}
+.gate-error.show{opacity:1}
 
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:600px){
@@ -191,6 +257,17 @@ footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
 </style>
 </head>
 <body>
+
+<div id="gate">
+  <div class="gate-eyebrow">Miami · Memorial Day Weekend · 2026</div>
+  <div class="gate-title">PSK's<br><em>Bar Mitzvah</em></div>
+  <div class="gate-sub">Friends only.</div>
+  <div class="gate-form">
+    <input class="gate-input" type="password" id="gateInput" placeholder="enter password" autocomplete="off">
+    <button class="gate-btn" onclick="tryUnlock()">Enter</button>
+    <span class="gate-error" id="gateError">Wrong password. Try again.</span>
+  </div>
+</div>
 
 <nav>
   <div class="nav-logo">PSK's Bar Mitzvah</div>
@@ -224,7 +301,7 @@ footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
     </div>
     <div class="hero-detail">
       <div class="hero-detail-label">Headcount</div>
-      <div class="hero-detail-value">8</div>
+      <div class="hero-detail-value">9</div>
     </div>
   </div>
 
@@ -285,64 +362,6 @@ footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
     </div>
     <div class="day-title">The Agora</div>
     <div class="item">
-      <div class="item-icon">💪</div>
-      <div class="item-body">
-        <div class="item-name">Morning Fitness <span class="tag tag-tbd">TBD</span></div>
-        <div class="item-detail">Still deciding what. Will update.</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-icon">🥂</div>
-      <div class="item-body">
-        <div class="item-name">Brunch <span class="tag tag-tbd">TBD</span></div>
-        <div class="item-detail">Venue TBD. Somewhere good.</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-icon">🏆</div>
-      <div class="item-body">
-        <div class="item-name">Beer Olympics</div>
-        <div class="item-detail">Teams TBD. Everyone plays. No exceptions.</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-icon">🏖️</div>
-      <div class="item-body">
-        <div class="item-name">Beach</div>
-        <div class="item-detail">Do whatever you want.</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-icon">🍽️</div>
-      <div class="item-body">
-        <div class="item-name"><a href="https://maps.app.goo.gl/2KKdfBmuceFPDgqJ7?g_st=i&utm_campaign=ac-im" target="_blank">Dinner at Mary Lou's</a> <span class="tag tag-book">Needs Booking</span></div>
-        <div class="item-detail">Time TBD.</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-icon">🎵</div>
-      <div class="item-body">
-        <div class="item-name"><a href="https://lavictoriamiami.com/" target="_blank" rel="noopener">La Vitoria</a> <span class="tag tag-book">Needs Booking</span></div>
-        <div class="item-detail">Saturday night main event.</div>
-      </div>
-    </div>
-    <div class="item">
-      <div class="item-icon">🌙</div>
-      <div class="item-body">
-        <div class="item-name"><a href="https://www.11miami.com/" target="_blank">Eleven</a> <span class="tag tag-tentative">If we skipped Friday</span></div>
-        <div class="item-detail">Late night backup.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SUNDAY -->
-  <div class="day r">
-    <div class="day-top">
-      <span class="day-tag">Day 3</span>
-      <span class="day-date">Sun, May 24</span>
-    </div>
-    <div class="day-title">The Symposium</div>
-    <div class="item">
       <div class="item-icon">☕</div>
       <div class="item-body">
         <div class="item-name">Breakfast</div>
@@ -357,17 +376,82 @@ footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
       </div>
     </div>
     <div class="item">
+      <div class="item-icon">🏆</div>
+      <div class="item-body">
+        <div class="item-name">Beer Olympics</div>
+        <div class="item-detail">Teams TBD. Everyone plays. No exceptions.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-icon">🍽️</div>
+      <div class="item-body">
+        <div class="item-name"><a href="https://www.mary-lous.com/" target="_blank">Dinner at Mary Lou's</a> <span class="tag tag-book">Needs Booking</span></div>
+        <div class="item-detail">The main event dinner. Speeches happening here — come prepared or wing it, your call.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-icon">💃</div>
+      <div class="item-body">
+        <div class="item-name"><a href="https://www.mary-lous.com/" target="_blank">Dancing at Mary Lou's</a></div>
+        <div class="item-detail">The party doesn't stop at the table.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-icon">🎵</div>
+      <div class="item-body">
+        <div class="item-name"><a href="https://lavictoriamiami.com/" target="_blank" rel="noopener">La Vitoria</a> <span class="tag tag-book">Needs Booking</span></div>
+        <div class="item-detail">The night rolls on.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-icon">🌙</div>
+      <div class="item-body">
+        <div class="item-name"><a href="https://www.11miami.com/" target="_blank">Eleven</a> <span class="tag tag-tentative">If we skipped Friday</span></div>
+        <div class="item-detail">Late night backup.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-icon">🌅</div>
+      <div class="item-body">
+        <div class="item-name"><a href="https://www.clubspace.com/" target="_blank">Space</a> <span class="tag tag-tentative">Optional Last Stop</span></div>
+        <div class="item-detail">For anyone who wants to dance to the sun rising with OVP. No judgment if you tap out early.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUNDAY -->
+  <div class="day r">
+    <div class="day-top">
+      <span class="day-tag">Day 3</span>
+      <span class="day-date">Sun, May 24</span>
+    </div>
+    <div class="day-title">The Symposium</div>
+    <div class="item">
+      <div class="item-icon">💪</div>
+      <div class="item-body">
+        <div class="item-name">Morning Fitness <span class="tag tag-tbd">TBD</span></div>
+        <div class="item-detail">Still deciding what. Could go back to padel if people are into it.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-icon">🥂</div>
+      <div class="item-body">
+        <div class="item-name">Brunch <span class="tag tag-tbd">TBD</span></div>
+        <div class="item-detail">Venue TBD. Somewhere good.</div>
+      </div>
+    </div>
+    <div class="item">
       <div class="item-icon">😎</div>
       <div class="item-body">
         <div class="item-name">Afternoon Free</div>
-        <div class="item-detail">Pool, beach, chill.</div>
+        <div class="item-detail">No agenda. Suggestions welcome — pool, beach, golf, or just recover. Drop your ideas in the group chat.</div>
       </div>
     </div>
     <div class="item">
       <div class="item-icon">🥩</div>
       <div class="item-body">
         <div class="item-name"><a href="https://sunnysmia.com/" target="_blank">Dinner at Sunny Steakhouse</a> <span class="tag tag-book">Needs Booking</span></div>
-        <div class="item-detail">Last dinner. Speeches happening here — come prepared or wing it, your call.</div>
+        <div class="item-detail">Last dinner of the weekend. Go out strong.</div>
       </div>
     </div>
   </div>
@@ -403,7 +487,6 @@ footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
     <div class="bet-bar"><div class="bet-bar-fill" data-width="7" style="width:0%;background:#c0513f"></div></div>
     <div class="bet-footer">
       <span>Implied: 6.7%</span>
-      <span>Consensus: No</span>
     </div>
   </div>
 
@@ -415,7 +498,19 @@ footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
     <div class="bet-bar"><div class="bet-bar-fill" data-width="50" style="width:0%;background:#a08030"></div></div>
     <div class="bet-footer">
       <span>Line: 1.5 beers</span>
-      <span>Smart money: Under</span>
+    </div>
+  </div>
+
+  <div class="add-bet-form r" id="addBetForm">
+    <div class="add-bet-form-title">Add a Bet</div>
+    <input class="add-bet-input" type="text" id="newBetTitle" placeholder="Write the bet…">
+    <div class="add-bet-controls">
+      <div class="bet-type-toggle">
+        <button class="bet-type-btn active" id="btnOdds" onclick="setBetType('odds')">Odds</button>
+        <button class="bet-type-btn" id="btnOU" onclick="setBetType('ou')">O/U</button>
+      </div>
+      <input class="add-bet-value" type="text" id="newBetValue" placeholder="+1400">
+      <button class="add-bet-submit" onclick="addBet()">+ Add</button>
     </div>
   </div>
 </section>
@@ -432,9 +527,10 @@ footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
       <span class="backup-item-name"><a href="https://www.cipriani.com/cipriani-miami-living-room" target="_blank">Cipriani</a></span>
       <span class="backup-item-note">— Could swap into any night.</span>
     </div>
-    <div class="backup-item">
-      <span class="backup-item-name"><span class="tag tag-tbd">TBD</span></span>
-      <span class="backup-item-note">— Open to suggestions.</span>
+    <div id="dinner-suggestions"></div>
+    <div class="add-suggestion-row">
+      <input class="add-suggestion-input" type="text" id="newDinnerSuggestion" placeholder="Suggest a dinner spot…">
+      <button class="add-suggestion-btn" onclick="addSuggestion('dinners', 'newDinnerSuggestion')">+ Add</button>
     </div>
   </div>
 
@@ -444,9 +540,10 @@ footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
       <span class="backup-item-name"><a href="https://www.cipriani.com/cipriani-miami-living-room" target="_blank">Living Room</a></span>
       <span class="backup-item-note">— Downstairs from Cipriani. Easy combo.</span>
     </div>
-    <div class="backup-item">
-      <span class="backup-item-name"><span class="tag tag-tbd">TBD</span></span>
-      <span class="backup-item-note">— Open to suggestions.</span>
+    <div id="nightlife-suggestions"></div>
+    <div class="add-suggestion-row">
+      <input class="add-suggestion-input" type="text" id="newNightlifeSuggestion" placeholder="Suggest a nightlife spot…">
+      <button class="add-suggestion-btn" onclick="addSuggestion('nightlife', 'newNightlifeSuggestion')">+ Add</button>
     </div>
   </div>
 </section>
@@ -476,48 +573,62 @@ footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
 <section class="section" id="crew">
   <div class="section-eyebrow r">The Group</div>
   <div class="section-title r">Roll Call</div>
-  <div class="section-desc r">The full roster. Eight guys, give or take a Freese.</div>
+  <div class="section-desc r">The full roster. Nine guys, give or take a Freese.</div>
 
   <div class="attendees-grid stagger">
     <div class="attendee bachelor r-scale">
       <div class="attendee-avatar">PK</div>
       <div class="attendee-name">Peter Karas</div>
       <div class="attendee-role">The Bachelor</div>
+      <div class="attendee-stat">sisters everywhere are sad he's off the market</div>
     </div>
     <div class="attendee r-scale">
       <div class="attendee-avatar">AC</div>
       <div class="attendee-name">Andrew Crown</div>
       <div class="attendee-role"></div>
+      <div class="attendee-stat">fun% down 60% since 2019, cause unknown</div>
     </div>
     <div class="attendee r-scale">
       <div class="attendee-avatar">JF</div>
       <div class="attendee-name">Jack Freese</div>
       <div class="attendee-role">Unconfirmed</div>
+      <div class="attendee-stat">DNP — coach's decision</div>
     </div>
     <div class="attendee r-scale">
       <div class="attendee-avatar">OP</div>
       <div class="attendee-name">Owen Prunskis</div>
       <div class="attendee-role"></div>
+      <div class="attendee-stat">all-time consecutive no-days-off leader (active streak)</div>
     </div>
     <div class="attendee r-scale">
       <div class="attendee-avatar">AU</div>
       <div class="attendee-name">Alex Uruchurtu</div>
       <div class="attendee-role">Soap Kingpin of Miami</div>
+      <div class="attendee-stat">single, rich, no notes (wish the accent were stronger though)</div>
     </div>
     <div class="attendee r-scale">
       <div class="attendee-avatar">PD</div>
       <div class="attendee-name">Peter Doyle</div>
       <div class="attendee-role"></div>
+      <div class="attendee-stat">great hair, unknown motives</div>
     </div>
     <div class="attendee r-scale">
       <div class="attendee-avatar">CH</div>
       <div class="attendee-name">Connor Huff</div>
       <div class="attendee-role"></div>
+      <div class="attendee-stat">jersey retired too soon</div>
     </div>
     <div class="attendee r-scale">
       <div class="attendee-avatar">JR</div>
       <div class="attendee-name">James Ruben</div>
       <div class="attendee-role"></div>
+      <div class="attendee-stat">openly jealous of the bride</div>
+    </div>
+    <div class="attendee r-scale">
+      <div class="attendee-avatar">MB</div>
+      <div class="attendee-name">Max Bobinski</div>
+      <div class="attendee-role">TBD</div>
+      <div class="attendee-stat">probably awesome</div>
     </div>
   </div>
 </section>
@@ -530,47 +641,52 @@ footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
 
   <div class="day r" style="padding:1.5rem 2rem">
     <div class="checklist">
-      <div class="check-row">
+      <div class="check-row" data-id="mila-dinner">
         <div class="check-box" onclick="toggleCheck(this)"></div>
         <span class="check-label"><a href="https://mila-miami.com/" target="_blank">Dinner at Mila</a> — Fri</span>
-        <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>TBD</option></select>
-        <span class="check-status">Not Booked</span>
+        <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>Max</option><option>TBD</option></select>
+        <span class="check-status">NOT DONE</span>
       </div>
-      <div class="check-row">
+      <div class="check-row" data-id="mila-club">
         <div class="check-box" onclick="toggleCheck(this)"></div>
         <span class="check-label"><a href="https://mila-miami.com/" target="_blank">The Club at Mila</a> — Fri</span>
-        <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>TBD</option></select>
-        <span class="check-status">Not Booked</span>
+        <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>Max</option><option>TBD</option></select>
+        <span class="check-status">NOT DONE</span>
       </div>
-      <div class="check-row">
+      <div class="check-row" data-id="marylous-dinner">
         <div class="check-box" onclick="toggleCheck(this)"></div>
-        <span class="check-label"><a href="https://maps.app.goo.gl/2KKdfBmuceFPDgqJ7?g_st=i&utm_campaign=ac-im" target="_blank">Dinner at Mary Lou's</a> — Sat</span>
-        <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>TBD</option></select>
-        <span class="check-status">Not Booked</span>
+        <span class="check-label"><a href="https://www.mary-lous.com/" target="_blank">Dinner at Mary Lou's</a> — Sat</span>
+        <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>Max</option><option>TBD</option></select>
+        <span class="check-status">NOT DONE</span>
       </div>
-      <div class="check-row">
+      <div class="check-row" data-id="lavictoria">
         <div class="check-box" onclick="toggleCheck(this)"></div>
         <span class="check-label"><a href="https://lavictoriamiami.com/" target="_blank" rel="noopener">La Vitoria</a> — Sat</span>
-        <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>TBD</option></select>
-        <span class="check-status">Not Booked</span>
+        <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>Max</option><option>TBD</option></select>
+        <span class="check-status">NOT DONE</span>
       </div>
-      <div class="check-row">
+      <div class="check-row" data-id="padel">
         <div class="check-box" onclick="toggleCheck(this)"></div>
-        <span class="check-label"><a href="https://www.reservepadel.com/" target="_blank">Padel at Reserve</a> — Sun</span>
-        <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>TBD</option></select>
-        <span class="check-status">Not Booked</span>
+        <span class="check-label"><a href="https://www.reservepadel.com/" target="_blank">Padel at Reserve</a> — Sat</span>
+        <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>Max</option><option>TBD</option></select>
+        <span class="check-status">NOT DONE</span>
       </div>
-      <div class="check-row">
+      <div class="check-row" data-id="sunny-dinner">
         <div class="check-box" onclick="toggleCheck(this)"></div>
         <span class="check-label"><a href="https://sunnysmia.com/" target="_blank">Dinner at Sunny Steakhouse</a> — Sun</span>
-        <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>TBD</option></select>
-        <span class="check-status">Not Booked</span>
+        <select class="assignee-select" title="Assignee"><option selected>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>Max</option><option>TBD</option></select>
+        <span class="check-status">NOT DONE</span>
       </div>
-      <div class="check-row done">
+      <div class="check-row done" data-id="accommodations">
         <div class="check-box checked" onclick="toggleCheck(this)"></div>
         <span class="check-label">Accommodations — Boulan South Beach</span>
-        <select class="assignee-select" title="Assignee"><option>Uru</option><option selected>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>TBD</option></select>
-        <span class="check-status">Booked</span>
+        <select class="assignee-select" title="Assignee"><option>Uru</option><option selected>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>Max</option><option>TBD</option></select>
+        <span class="check-status" style="color:#5a9a6a">DONE</span>
+      </div>
+      <div class="add-task-row">
+        <input class="add-task-input" type="text" id="newTaskLabel" placeholder="Add a task…">
+        <select class="assignee-select" id="newTaskAssignee"><option>Uru</option><option>James</option><option>Crown</option><option>Freese</option><option>PSK</option><option>Owen</option><option>Doyle</option><option>Huff</option><option>Max</option><option>TBD</option></select>
+        <button class="add-task-btn" onclick="addTask()">+ Add</button>
       </div>
     </div>
   </div>
@@ -589,7 +705,278 @@ footer{background:#0f1923;text-align:center;padding:4rem 2rem;color:#4a5a6a}
   <div class="footer-sub">Miami Beach — May 22–25, 2026</div>
 </footer>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 <script>
+// ═══ PASSWORD GATE ═══
+(function() {
+  if (sessionStorage.getItem('psk-bach-unlocked') === '1') {
+    document.getElementById('gate').style.display = 'none';
+  }
+})();
+
+function tryUnlock() {
+  const val = document.getElementById('gateInput').value.trim().toLowerCase().replace(/\s+/g,'');
+  if (val === 'psk') {
+    sessionStorage.setItem('psk-bach-unlocked', '1');
+    const gate = document.getElementById('gate');
+    gate.classList.add('unlocking');
+    gate.addEventListener('transitionend', () => gate.style.display = 'none', { once: true });
+  } else {
+    const err = document.getElementById('gateError');
+    err.classList.add('show');
+    document.getElementById('gateInput').value = '';
+    document.getElementById('gateInput').focus();
+    setTimeout(() => err.classList.remove('show'), 2500);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const input = document.getElementById('gateInput');
+  if (input) input.addEventListener('keydown', e => { if (e.key === 'Enter') tryUnlock(); });
+});
+
+// ═══ FIREBASE ═══
+firebase.initializeApp({
+  apiKey: "AIzaSyABrI-X70fgme2rSYfzJ8xguf5x2eqHP9s",
+  authDomain: "psk-bach.firebaseapp.com",
+  projectId: "psk-bach",
+  storageBucket: "psk-bach.firebasestorage.app",
+  messagingSenderId: "207017440765",
+  appId: "1:207017440765:web:333df0c146fc85ccf4d594",
+  databaseURL: "https://psk-bach-default-rtdb.firebaseio.com"
+});
+const taskStateRef = firebase.database().ref('taskState');
+const checklist = document.querySelector('.checklist');
+const pendingAnimations = new Set();
+
+function animateIn(el, classes) {
+  classes.forEach(c => el.classList.add(c));
+  el.addEventListener('animationend', () => classes.forEach(c => el.classList.remove(c)), { once: true });
+}
+const NAMES = ['Uru','James','Crown','Freese','PSK','Owen','Doyle','Huff','Max','TBD'];
+
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function optionsHTML(selected) {
+  return NAMES.map(n => `<option${n===selected?' selected':''}>${n}</option>`).join('');
+}
+
+function applyState(row, task) {
+  const box = row.querySelector('.check-box');
+  const status = row.querySelector('.check-status');
+  const select = row.querySelector('.assignee-select');
+  const checked = !!task.checked;
+  box.classList.toggle('checked', checked);
+  row.classList.toggle('done', checked);
+  status.textContent = checked ? 'DONE' : 'NOT DONE';
+  status.style.color = checked ? '#5a9a6a' : '#c0513f';
+  if (select && task.assignee && select.value !== task.assignee) select.value = task.assignee;
+}
+
+function createCustomRow(id, task) {
+  const row = document.createElement('div');
+  row.className = 'check-row' + (task.checked ? ' done' : '');
+  row.dataset.id = id;
+  row.dataset.custom = '1';
+  if (pendingAnimations.has(id)) { pendingAnimations.delete(id); setTimeout(() => animateIn(row, ['slide-in']), 10); }
+  row.innerHTML = `
+    <div class="check-box${task.checked?' checked':''}" onclick="toggleCheck(this)"></div>
+    <span class="check-label">${escapeHtml(task.label)}</span>
+    <select class="assignee-select" title="Assignee">${optionsHTML(task.assignee||'TBD')}</select>
+    <span class="check-status" style="color:${task.checked?'#5a9a6a':'#c0513f'}">${task.checked?'DONE':'NOT DONE'}</span>
+    <button class="remove-task-btn" onclick="removeTask('${id}')">×</button>
+  `;
+  row.querySelector('.assignee-select').addEventListener('change', e => {
+    taskStateRef.child(id).update({ assignee: e.target.value });
+  });
+  return row;
+}
+
+taskStateRef.on('value', snapshot => {
+  const state = snapshot.val() || {};
+  document.querySelectorAll('.check-row[data-id]:not([data-custom])').forEach(row => {
+    if (state[row.dataset.id]) applyState(row, state[row.dataset.id]);
+  });
+  const addRow = document.querySelector('.add-task-row');
+  const renderedIds = new Set(Array.from(document.querySelectorAll('.check-row[data-custom]')).map(r => r.dataset.id));
+  const fbCustomIds = new Set(Object.entries(state).filter(([,v]) => v.custom).map(([k]) => k));
+  Object.entries(state).forEach(([id, task]) => {
+    if (!task.custom) return;
+    if (!renderedIds.has(id)) {
+      checklist.insertBefore(createCustomRow(id, task), addRow);
+    } else {
+      applyState(document.querySelector(`.check-row[data-id="${id}"]`), task);
+    }
+  });
+  renderedIds.forEach(id => {
+    if (!fbCustomIds.has(id)) document.querySelector(`.check-row[data-id="${id}"]`)?.remove();
+  });
+});
+
+document.querySelectorAll('.check-row[data-id]:not([data-custom]) .assignee-select').forEach(sel => {
+  sel.addEventListener('change', () => {
+    taskStateRef.child(sel.closest('.check-row').dataset.id).update({ assignee: sel.value });
+  });
+});
+
+function addTask() {
+  const input = document.getElementById('newTaskLabel');
+  const label = input.value.trim();
+  if (!label) return;
+  const id = 'custom-' + Date.now();
+  pendingAnimations.add(id);
+  taskStateRef.child(id).set({
+    label, assignee: document.getElementById('newTaskAssignee').value, checked: false, custom: true
+  });
+  input.value = '';
+}
+
+function removeTask(id) {
+  taskStateRef.child(id).remove();
+}
+
+// ═══ BETS ═══
+const betsRef = firebase.database().ref('bets');
+let currentBetType = 'odds';
+
+function setBetType(type) {
+  currentBetType = type;
+  document.getElementById('btnOdds').classList.toggle('active', type === 'odds');
+  document.getElementById('btnOU').classList.toggle('active', type === 'ou');
+  document.getElementById('newBetValue').placeholder = type === 'odds' ? '+1400' : '1.5';
+}
+
+function oddsToImplied(val) {
+  const n = parseInt(String(val).replace(/[^\d-]/g, ''));
+  if (isNaN(n) || n === 0) return 50;
+  return n > 0
+    ? Math.round(100 / (n + 100) * 100)
+    : Math.round(Math.abs(n) / (Math.abs(n) + 100) * 100);
+}
+
+function formatOddsDisplay(type, value) {
+  if (type === 'ou') return `O/U ${value}`;
+  const n = parseInt(String(value).replace(/[^\d-]/g, ''));
+  if (isNaN(n)) return value;
+  return n >= 0 ? `+${n}` : `${n}`;
+}
+
+function getBarMeta(type, value) {
+  if (type === 'ou') {
+    return { width: 50, color: '#a08030', impliedLabel: `Line: ${value}` };
+  }
+  const implied = oddsToImplied(value);
+  let color;
+  if (implied >= 75)      { color = '#5a9a6a'; }
+  else if (implied >= 55) { color = '#7aaa8a'; }
+  else if (implied >= 45) { color = '#a08030'; }
+  else if (implied >= 25) { color = '#c08050'; }
+  else                    { color = '#c0513f'; }
+  return { width: implied, color, impliedLabel: `Implied: ${implied}%` };
+}
+
+function createBetCard(id, bet) {
+  const meta = getBarMeta(bet.type, bet.value);
+  const card = document.createElement('div');
+  card.className = 'bet-card';
+  card.dataset.id = id;
+  if (pendingAnimations.has(id)) { pendingAnimations.delete(id); setTimeout(() => animateIn(card, ['slide-in', 'flash-new']), 10); }
+  card.innerHTML = `
+    <div class="bet-header">
+      <div class="bet-title">${escapeHtml(bet.title)}</div>
+      <div class="bet-odds">${formatOddsDisplay(bet.type, bet.value)}</div>
+    </div>
+    <div class="bet-bar"><div class="bet-bar-fill" style="width:0%;background:${meta.color};transition:width 1.2s cubic-bezier(.22,1,.36,1)" data-width="${meta.width}"></div></div>
+    <div class="bet-footer">
+      <span>${meta.impliedLabel}</span>
+      <button class="remove-task-btn" onclick="removeBet('${id}')">×</button>
+    </div>
+  `;
+  setTimeout(() => {
+    const fill = card.querySelector('.bet-bar-fill');
+    if (fill) fill.style.width = meta.width + '%';
+  }, 100);
+  return card;
+}
+
+betsRef.on('value', snapshot => {
+  const bets = snapshot.val() || {};
+  const form = document.getElementById('addBetForm');
+  const rendered = new Set(Array.from(document.querySelectorAll('.bet-card[data-id]')).map(c => c.dataset.id));
+  const fbIds = new Set(Object.keys(bets));
+  Object.entries(bets).forEach(([id, bet]) => {
+    if (!rendered.has(id)) form.parentNode.insertBefore(createBetCard(id, bet), form);
+  });
+  rendered.forEach(id => {
+    if (!fbIds.has(id)) document.querySelector(`.bet-card[data-id="${id}"]`)?.remove();
+  });
+});
+
+function addBet() {
+  const title = document.getElementById('newBetTitle').value.trim();
+  const value = document.getElementById('newBetValue').value.trim();
+  if (!title || !value) return;
+  const id = 'bet-' + Date.now();
+  pendingAnimations.add(id);
+  betsRef.child(id).set({ title, type: currentBetType, value });
+  document.getElementById('newBetTitle').value = '';
+  document.getElementById('newBetValue').value = '';
+}
+
+function removeBet(id) {
+  betsRef.child(id).remove();
+}
+
+// ═══ SUGGESTIONS ═══
+const suggestionsRef = firebase.database().ref('suggestions');
+
+function renderSuggestion(category, id, item) {
+  const div = document.createElement('div');
+  div.className = 'backup-item';
+  div.dataset.id = id;
+  if (pendingAnimations.has(id)) { pendingAnimations.delete(id); setTimeout(() => animateIn(div, ['slide-in']), 10); }
+  div.innerHTML = `
+    <span class="backup-item-name">${escapeHtml(item.name)}</span>
+    ${item.note ? `<span class="backup-item-note">— ${escapeHtml(item.note)}</span>` : ''}
+    <button class="remove-task-btn" onclick="removeSuggestion('${category}','${id}')">×</button>
+  `;
+  return div;
+}
+
+suggestionsRef.on('value', snapshot => {
+  const all = snapshot.val() || {};
+  ['dinners', 'nightlife'].forEach(cat => {
+    const container = document.getElementById(`${cat === 'dinners' ? 'dinner' : 'nightlife'}-suggestions`);
+    const items = all[cat] || {};
+    const rendered = new Set(Array.from(container.querySelectorAll('.backup-item[data-id]')).map(el => el.dataset.id));
+    const fbIds = new Set(Object.keys(items));
+    Object.entries(items).forEach(([id, item]) => {
+      if (!rendered.has(id)) container.appendChild(renderSuggestion(cat, id, item));
+    });
+    rendered.forEach(id => {
+      if (!fbIds.has(id)) container.querySelector(`[data-id="${id}"]`)?.remove();
+    });
+  });
+});
+
+function addSuggestion(category, inputId) {
+  const input = document.getElementById(inputId);
+  const raw = input.value.trim();
+  if (!raw) return;
+  const id = 's-' + Date.now();
+  pendingAnimations.add(id);
+  const [name, ...rest] = raw.split('—').map(s => s.trim());
+  suggestionsRef.child(category).child(id).set({ name, note: rest.join('—') || '' });
+  input.value = '';
+}
+
+function removeSuggestion(category, id) {
+  suggestionsRef.child(category).child(id).remove();
+}
+
 // ═══ SCROLL REVEAL ═══
 const revealEls = document.querySelectorAll('.r,.r-left,.r-right,.r-scale');
 const obs = new IntersectionObserver((entries) => {
@@ -621,15 +1008,21 @@ function toggleCheck(box) {
   box.classList.toggle('checked');
   const row = box.closest('.check-row');
   row.classList.toggle('done');
+  const checked = box.classList.contains('checked');
   const status = row.querySelector('.check-status');
-  if (box.classList.contains('checked')) {
-    status.textContent = 'Booked';
-    status.style.color = '#5a9a6a';
-  } else {
-    status.textContent = 'Not Booked';
-    status.style.color = '#c0513f';
+  status.textContent = checked ? 'DONE' : 'NOT DONE';
+  status.style.color = checked ? '#5a9a6a' : '#c0513f';
+  taskStateRef.child(row.dataset.id).update({ checked });
+  if (checked) {
+    animateIn(box, ['pulse']);
+    animateIn(row, ['flash-done']);
   }
 }
+
+// ═══ EASTER EGG ═══
+console.log('%c🌴 PSK\'s Bar Mitzvah 🏛️', 'font-size:18px;font-weight:bold;color:#c4a44a;font-family:serif');
+console.log('%cMiami Beach · May 22–25, 2026', 'font-size:12px;color:#1a3a5c');
+console.log('%cSnooping around, James?', 'font-size:11px;color:#aaa;font-style:italic');
 </script>
 
 </body>
